@@ -1,0 +1,35 @@
+.app {
+  width: 100%;
+  min-height: 100vh;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.map-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.map-container h1 {
+  margin: 0 0 0.5rem 0;
+  text-align: center;
+}
+
+.map-container p {
+  margin: 0 0 1rem 0;
+  text-align: center;
+  color: #666;
+}
+
+.loading,
+.error,
+.no-data {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+}
+
+.error {
+  color: #dc3545;
+}

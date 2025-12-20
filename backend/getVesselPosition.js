@@ -5,7 +5,7 @@ const path = require("path");
 const MMSI = process.env.MMSI || "352594000"; // Default: MSC Magnifica
 const API_KEY = process.env.AISSTREAM_API_KEY || "YOUR_API_KEY";
 const TIMEOUT_MS = parseInt(process.env.TIMEOUT_MS) || 600000; // Default 10 minutes
-const POSITION_FILE = path.join(__dirname, "position.json");
+const POSITION_FILE = path.join(__dirname, "..", "data", "position.json");
 
 function loadPositions() {
   try {
@@ -32,22 +32,43 @@ function getVesselPosition() {
       FiltersShipMMSI: [MMSI],
       FilterMessageTypes: ["PositionReport"],
     };
+    console.log("Connected. Sending subscription for MMSI:", MMSI);
     ws.send(JSON.stringify(subscribeMsg));
-    console.log("Connected. Waiting for MSC Magnifica position...");
+    console.log("Waiting for position data...");
   });
 
+  let positionReceived = false;
+
   ws.on("close", (code, reason) => {
-    console.log(`Connection closed: ${code} ${reason}`);
+    const reasonStr = reason ? reason.toString() : 'no reason';
+    console.log(`Connection closed: code=${code}, reason=${reasonStr}`);
+    if (!positionReceived) {
+      process.exit(1);
+    }
   });
 
   ws.on("message", (data) => {
     const msg = JSON.parse(data);
+
+    // Check for error message from server
+    if (msg.error || msg.Error) {
+      console.error("Server error:", msg.error || msg.Error);
+      return;
+    }
+
+    // Check if it's a valid position message
+    if (!msg.MetaData) {
+      console.log("Received message:", JSON.stringify(msg, null, 2));
+      return;
+    }
+
     const { latitude, longitude, ShipName, time_utc } = msg.MetaData;
     console.log(`\n${ShipName} Position:`);
     console.log(`  Latitude:  ${latitude}`);
     console.log(`  Longitude: ${longitude}`);
     console.log(`  Time:      ${time_utc}`);
     savePosition(latitude, longitude, time_utc);
+    positionReceived = true;
     ws.close();
     process.exit(0);
   });

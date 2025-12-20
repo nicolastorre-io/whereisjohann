@@ -5,6 +5,9 @@ on:
     - cron: '0 * * * *'  # Every hour
   workflow_dispatch:  # Allow manual trigger
 
+permissions:
+  contents: write
+
 jobs:
   track:
     runs-on: ubuntu-latest
@@ -19,19 +22,19 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install
+        run: yarn install --frozen-lockfile
 
       - name: Get vessel position
         env:
           AISSTREAM_API_KEY: ${{ secrets.AISSTREAM_API_KEY }}
           TIMEOUT_MS: ${{ vars.TIMEOUT_MS }}
           MMSI: ${{ vars.MMSI }}
-        run: node getVesselPosition.js
+        run: yarn track
 
       - name: Commit and push position
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add position.json
+          git add data/position.json
           git diff --staged --quiet || git commit -m "[POSITION] Update vessel position"
           git push
