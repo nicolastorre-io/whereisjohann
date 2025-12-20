@@ -10,7 +10,7 @@ export default function HomePage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('./position.json')
+    fetch('./position.json', { cache: 'no-store' })
       .then((res) => res.json())
       .then(setData)
       .catch((err: Error) => setError(err.message));
