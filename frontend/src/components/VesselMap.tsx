@@ -2,7 +2,7 @@ import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet'
 import L from 'leaflet';
 import type { LatLngTuple } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import type { Position } from '../interfaces/vessel';
+import type { Position } from 'shared';
 import { formatDate } from '../utils/date';
 import { useFitBounds } from '../hooks/useFitBounds';
 

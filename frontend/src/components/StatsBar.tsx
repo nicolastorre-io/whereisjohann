@@ -1,4 +1,4 @@
-import type { Position } from '../interfaces/vessel';
+import type { Position } from 'shared';
 
 interface StatsBarProps {
   positionsCount: number;

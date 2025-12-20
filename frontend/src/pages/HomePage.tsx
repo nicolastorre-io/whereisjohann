@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import StatsBar from '../components/StatsBar';
 import VesselMap from '../components/VesselMap';
-import type { VesselData } from '../interfaces/vessel';
+import type { VesselData } from 'shared';
 import { formatDate } from '../utils/date';
 
 export default function HomePage() {

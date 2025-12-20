@@ -2,12 +2,13 @@
   "name": "whereisjohann",
   "private": true,
   "workspaces": [
+    "shared",
     "backend",
     "frontend"
   ],
   "scripts": {
     "dev": "yarn workspace frontend dev",
-    "build": "yarn workspace frontend build",
+    "build": "yarn workspace shared build && yarn workspace frontend build",
     "track": "yarn workspace backend track"
   }
 }
