@@ -1,35 +1,193 @@
 .app {
-  width: 100%;
   min-height: 100vh;
-  padding: 1rem;
-  box-sizing: border-box;
+  padding: 2rem;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+
+.header .subtitle {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+/* Stats Bar */
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border-radius: var(--border-radius);
+  padding: 1rem 1.5rem;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 150px;
+}
+
+.stat-card .value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+.stat-card .label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Map Container */
+.map-wrapper {
+  background: var(--bg-card);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .map-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+  height: 70vh;
+  min-height: 400px;
 }
 
-.map-container h1 {
-  margin: 0 0 0.5rem 0;
+/* Last Update */
+.last-update {
   text-align: center;
+  margin-top: 1.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
 }
 
-.map-container p {
-  margin: 0 0 1rem 0;
-  text-align: center;
-  color: #666;
+.last-update span {
+  color: var(--accent);
+  font-weight: 500;
 }
 
+/* Loading & Error States */
 .loading,
 .error,
 .no-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
   text-align: center;
   padding: 2rem;
-  font-size: 1.2rem;
+}
+
+.loading {
+  color: var(--secondary);
+}
+
+.loading::before {
+  content: '';
+  width: 50px;
+  height: 50px;
+  border: 3px solid var(--bg-card);
+  border-top-color: var(--secondary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
 }
 
 .error {
-  color: #dc3545;
+  color: #ff6b6b;
+}
+
+.no-data {
+  color: var(--text-secondary);
+}
+
+/* Leaflet Popup Customization */
+.leaflet-popup-content-wrapper {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.leaflet-popup-tip {
+  background: var(--bg-card);
+}
+
+.leaflet-popup-content {
+  margin: 12px 16px;
+  line-height: 1.6;
+}
+
+.popup-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--secondary);
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.popup-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  padding: 0.25rem 0;
+}
+
+.popup-row .label {
+  color: var(--text-secondary);
+}
+
+.popup-row .value {
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .app {
+    padding: 1rem;
+  }
+
+  .header h1 {
+    font-size: 1.8rem;
+  }
+
+  .stats-bar {
+    gap: 1rem;
+  }
+
+  .stat-card {
+    min-width: 120px;
+    padding: 0.75rem 1rem;
+  }
+
+  .map-container {
+    height: 60vh;
+  }
 }

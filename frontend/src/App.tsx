@@ -1,10 +1,10 @@
-import VesselMap from './components/VesselMap';
+import HomePage from './pages/HomePage';
 import './App.css';
 
 function App() {
   return (
     <div className="app">
-      <VesselMap />
+      <HomePage />
     </div>
   );
 }
