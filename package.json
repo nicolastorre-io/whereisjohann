@@ -1,0 +1,23 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "getVesselPosition.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicolastorre-io/whereisjohann.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nicolastorre-io/whereisjohann/issues"
+  },
+  "homepage": "https://github.com/nicolastorre-io/whereisjohann#readme",
+  "dependencies": {
+    "ws": "^8.18.3"
+  }
+}
