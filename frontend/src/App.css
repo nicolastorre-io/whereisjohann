@@ -20,8 +20,17 @@
 }
 
 .header .subtitle {
+  color: var(--secondary);
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.header .subtext {
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: 0.9rem;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 /* Stats Bar */
