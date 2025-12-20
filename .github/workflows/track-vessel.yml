@@ -42,8 +42,3 @@ jobs:
           git add data/position.json
           git diff --staged --quiet || git commit -m "[POSITION] Update vessel position"
           git push
-
-      - name: Trigger deploy
-        run: gh workflow run deploy-pages.yml
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
