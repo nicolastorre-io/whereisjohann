@@ -1,0 +1,11 @@
+{
+  "vessel": "MSC Magnifica",
+  "mmsi": "352594000",
+  "positions": [
+    {
+      "latitude": 44.41108833333333,
+      "longitude": 8.91564,
+      "time": "2025-12-20 09:09:37.554529705 +0000 UTC"
+    }
+  ]
+}

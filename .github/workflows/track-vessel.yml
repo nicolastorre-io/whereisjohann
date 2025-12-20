@@ -24,6 +24,8 @@ jobs:
       - name: Get vessel position
         env:
           AISSTREAM_API_KEY: ${{ secrets.AISSTREAM_API_KEY }}
+          TIMEOUT_MS: ${{ vars.TIMEOUT_MS }}
+          MMSI: ${{ vars.MMSI }}
         run: node getVesselPosition.js
 
       - name: Commit and push position
@@ -31,5 +33,5 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add position.json
-          git diff --staged --quiet || git commit -m "Update vessel position"
+          git diff --staged --quiet || git commit -m "[POSITION] Update vessel position"
           git push

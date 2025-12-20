@@ -2,8 +2,9 @@ const WebSocket = require("ws");
 const fs = require("fs");
 const path = require("path");
 
-const MMSI = "352594000"; // MSC Magnifica
+const MMSI = process.env.MMSI || "352594000"; // Default: MSC Magnifica
 const API_KEY = process.env.AISSTREAM_API_KEY || "YOUR_API_KEY";
+const TIMEOUT_MS = parseInt(process.env.TIMEOUT_MS) || 600000; // Default 10 minutes
 const POSITION_FILE = path.join(__dirname, "position.json");
 
 function loadPositions() {
@@ -56,12 +57,12 @@ function getVesselPosition() {
     process.exit(1);
   });
 
-  // Timeout after 5 minutes if no message received
+  // Timeout if no message received
   setTimeout(() => {
-    console.error("Timeout: No position received");
+    console.error(`Timeout: No position received after ${TIMEOUT_MS / 1000}s`);
     ws.close();
     process.exit(1);
-  }, 300000);
+  }, TIMEOUT_MS);
 }
 
 getVesselPosition();
