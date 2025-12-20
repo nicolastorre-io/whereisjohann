@@ -9,7 +9,7 @@ export default function Header({ vesselName }: Readonly<HeaderProps>) {
       <p className="subtitle">{vesselName}</p>
       <p className="subtext">
         Track Johann's cruise journey in real-time. Each marker shows a recorded position,
-        and the line traces the ship's route across the Mediterranean.
+        and the line traces the ship's route.
       </p>
     </div>
   );
