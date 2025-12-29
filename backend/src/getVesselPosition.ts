@@ -2,7 +2,7 @@ import WebSocket from 'ws';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import type { VesselData } from 'shared';
+import type { VesselData, AISMessage } from 'shared';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -10,19 +10,6 @@ const MMSI = process.env.MMSI || '352594000';
 const API_KEY = process.env.AISSTREAM_API_KEY || 'YOUR_API_KEY';
 const TIMEOUT_MS = parseInt(process.env.TIMEOUT_MS || '600000');
 const POSITION_FILE = path.join(__dirname, '..', '..', 'data', 'position.json');
-
-interface AISMetaData {
-  latitude: number;
-  longitude: number;
-  ShipName: string;
-  time_utc: string;
-}
-
-interface AISMessage {
-  error?: string;
-  Error?: string;
-  MetaData?: AISMetaData;
-}
 
 function loadPositions(): VesselData {
   try {
@@ -32,9 +19,9 @@ function loadPositions(): VesselData {
   }
 }
 
-function savePosition(latitude: number, longitude: number, time: string): void {
+function savePosition(latitude: number, longitude: number, time: string, cog?: number, sog?: number): void {
   const data = loadPositions();
-  data.positions.push({ latitude, longitude, time });
+  data.positions.push({ latitude, longitude, time, cog, sog });
   fs.writeFileSync(POSITION_FILE, JSON.stringify(data, null, 2));
   console.log('Position saved to position.json');
 }
@@ -78,11 +65,15 @@ function getVesselPosition(): void {
     }
 
     const { latitude, longitude, ShipName, time_utc } = msg.MetaData;
+    const cog = msg.Message?.PositionReport?.Cog;
+    const sog = msg.Message?.PositionReport?.Sog;
     console.log(`\n${ShipName} Position:`);
     console.log(`  Latitude:  ${latitude}`);
     console.log(`  Longitude: ${longitude}`);
+    console.log(`  COG:       ${cog}`);
+    console.log(`  SOG:       ${sog}`);
     console.log(`  Time:      ${time_utc}`);
-    savePosition(latitude, longitude, time_utc);
+    savePosition(latitude, longitude, time_utc, cog, sog);
     positionReceived = true;
     ws.close();
     process.exit(0);

@@ -1,11 +1,5 @@
-export interface Position {
-  latitude: number;
-  longitude: number;
-  time: string;
-}
-
-export interface VesselData {
-  vessel: string;
-  mmsi: string;
-  positions: Position[];
-}
+export type { Position } from './Position';
+export type { VesselData } from './VesselData';
+export type { AISMetaData } from './AISMetaData';
+export type { PositionReport } from './PositionReport';
+export type { AISMessage } from './AISMessage';
