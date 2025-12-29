@@ -1,6 +1,7 @@
 import { Marker, Popup } from 'react-leaflet';
 import type { Position } from 'shared';
 import { formatDate } from '../utils/date';
+import { getNavigationalStatus } from '../utils/navigationalStatus';
 import { createArrowIcon, defaultIcon, defaultCurrentIcon } from './arrowIcon';
 
 interface VesselMarkerProps {
@@ -43,6 +44,12 @@ export default function VesselMarker({ position, index, isFirst, isLast }: Vesse
           <div className="popup-row">
             <span className="label">Speed</span>
             <span className="value">{position.sog.toFixed(1)} kn</span>
+          </div>
+        )}
+        {position.navigationalStatus !== undefined && (
+          <div className="popup-row">
+            <span className="label">Status</span>
+            <span className="value">{getNavigationalStatus(position.navigationalStatus)}</span>
           </div>
         )}
         <div className="popup-row">

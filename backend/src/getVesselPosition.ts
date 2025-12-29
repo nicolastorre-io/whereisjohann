@@ -20,10 +20,10 @@ function loadPositions(): VesselData {
   }
 }
 
-function savePosition(latitude: number, longitude: number, time: string, cog?: number, sog?: number): void {
+function savePosition(latitude: number, longitude: number, time: string, cog?: number, sog?: number, navigationalStatus?: number): void {
   const data = loadPositions();
   const id = crypto.randomUUID();
-  data.positions.push({ id, latitude, longitude, time, cog, sog });
+  data.positions.push({ id, latitude, longitude, time, cog, sog, navigationalStatus });
   fs.writeFileSync(POSITION_FILE, JSON.stringify(data, null, 2));
   console.log('Position saved to position.json');
 }
@@ -69,13 +69,15 @@ function getVesselPosition(): void {
     const { latitude, longitude, ShipName, time_utc } = msg.MetaData;
     const cog = msg.Message?.PositionReport?.Cog;
     const sog = msg.Message?.PositionReport?.Sog;
+    const navigationalStatus = msg.Message?.PositionReport?.NavigationalStatus;
     console.log(`\n${ShipName} Position:`);
     console.log(`  Latitude:  ${latitude}`);
     console.log(`  Longitude: ${longitude}`);
     console.log(`  COG:       ${cog}`);
     console.log(`  SOG:       ${sog}`);
+    console.log(`  Nav Status: ${navigationalStatus}`);
     console.log(`  Time:      ${time_utc}`);
-    savePosition(latitude, longitude, time_utc, cog, sog);
+    savePosition(latitude, longitude, time_utc, cog, sog, navigationalStatus);
     positionReceived = true;
     ws.close();
     process.exit(0);

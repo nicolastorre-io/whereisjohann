@@ -5,4 +5,5 @@ export interface Position {
   time: string;
   cog?: number;
   sog?: number;
+  navigationalStatus?: number;
 }
