@@ -510,6 +510,16 @@
       "sog": 0,
       "navigationalStatus": 5,
       "reportType": "PositionReport"
+    },
+    {
+      "id": "62dbb280-e23a-4e09-a0c4-61b181308dba",
+      "latitude": 43.342189999999995,
+      "longitude": 5.332761666666667,
+      "time": "2025-12-29 16:25:29.03802672 +0000 UTC",
+      "cog": 232.3,
+      "sog": 0,
+      "navigationalStatus": 5,
+      "reportType": "PositionReport"
     }
   ]
 }
