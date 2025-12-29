@@ -25,6 +25,18 @@
       "name": "MSC MAGNIFICA",
       "callSign": "3FLO4",
       "destination": "ESALC"
+    },
+    {
+      "id": "6b651957-f900-4e08-b9b2-280bec3a44c8",
+      "mmsi": 352594000,
+      "latitude": 43.23967833333334,
+      "longitude": 5.178701666666667,
+      "time": "2025-12-29 18:00:14.841831177 +0000 UTC",
+      "cog": 219.9,
+      "sog": 10.1,
+      "navigationalStatus": 0,
+      "positionReportType": "PositionReport",
+      "name": "MSC MAGNIFICA"
     }
   ]
 }
