@@ -52,6 +52,20 @@ export default function VesselMarker({ position, index, isFirst, isLast }: Vesse
             <span className="value">{getNavigationalStatus(position.navigationalStatus)}</span>
           </div>
         )}
+        {position.destination && (
+          <div className="popup-row">
+            <span className="label">Destination</span>
+            <span className="value">
+              <a
+                href={`https://www.google.com/maps/search/${encodeURIComponent(position.destination)}+port`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {position.destination}
+              </a>
+            </span>
+          </div>
+        )}
         <div className="popup-row">
           <span className="label">Time</span>
           <span className="value">{formatDate(position.time)}</span>

@@ -1,5 +1,4 @@
-export interface Position {
-  id: string;
+export interface PositionData {
   mmsi: string;
   latitude: number;
   longitude: number;
@@ -9,6 +8,4 @@ export interface Position {
   navigationalStatus?: number;
   positionReportType?: string;
   name?: string;
-  callSign?: string;
-  destination?: string;
 }

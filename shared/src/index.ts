@@ -4,4 +4,7 @@ export type { AISMetaData } from './AISMetaData';
 export type { PositionReport } from './PositionReport';
 export type { StandardClassBPositionReport } from './StandardClassBPositionReport';
 export type { ExtendedClassBPositionReport } from './ExtendedClassBPositionReport';
+export type { ShipStaticData, ShipStaticDataFile, ShipDimension, ShipEta } from './ShipStaticData';
 export type { AISMessage } from './AISMessage';
+export type { ShipInfo } from './ShipInfo';
+export type { PositionData } from './PositionData';

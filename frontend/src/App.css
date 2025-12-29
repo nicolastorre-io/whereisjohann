@@ -26,6 +26,20 @@
   margin-bottom: 0.5rem;
 }
 
+.header .ship-info {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.header .ship-info span {
+  display: inline-block;
+}
+
 .header .subtext {
   color: var(--text-secondary);
   font-size: 0.9rem;

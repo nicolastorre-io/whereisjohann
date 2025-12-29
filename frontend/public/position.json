@@ -1,16 +1,30 @@
 {
-  "vessel": "MSC Magnifica",
-  "mmsi": "352594000",
   "positions": [
     {
-      "latitude": 44.41108833333333,
-      "longitude": 8.91564,
-      "time": "2025-12-20 09:09:37.554529705 +0000 UTC"
+      "id": "f3c66a7b-f687-4ae8-a875-14c506479fb0",
+      "mmsi": 352594000,
+      "latitude": 43.32856,
+      "longitude": 5.286301666666666,
+      "time": "2025-12-29 17:17:45.638131585 +0000 UTC",
+      "cog": 219.5,
+      "sog": 10.1,
+      "navigationalStatus": 0,
+      "positionReportType": "PositionReport",
+      "name": "MSC MAGNIFICA"
     },
     {
-      "latitude": 44.41109166666667,
-      "longitude": 8.915638333333334,
-      "time": "2025-12-20 09:12:37.739287617 +0000 UTC"
+      "id": "514450e8-3e78-4644-bdce-170b4279e781",
+      "mmsi": 352594000,
+      "latitude": 43.32170166666666,
+      "longitude": 5.278506666666667,
+      "time": "2025-12-29 17:20:55.829481665 +0000 UTC",
+      "cog": 219.9,
+      "sog": 10.1,
+      "navigationalStatus": 0,
+      "positionReportType": "PositionReport",
+      "name": "MSC MAGNIFICA",
+      "callSign": "3FLO4",
+      "destination": "ESALC"
     }
   ]
 }

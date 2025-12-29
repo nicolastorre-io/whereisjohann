@@ -22,15 +22,15 @@ export default function HomePage() {
     return <div className="no-data">No positions recorded yet. Waiting for vessel data...</div>;
   }
 
-  const lastPosition = data.positions[data.positions.length - 1];
+  const lastPosition = data.positions.at(-1)!;
 
   return (
     <>
-      <Header mmsi={data.mmsi} />
+      <Header mmsi={lastPosition.mmsi} lastPosition={lastPosition} />
       <StatsBar
         positionsCount={data.positions.length}
         lastPosition={lastPosition}
-        mmsi={data.mmsi}
+        mmsi={lastPosition.mmsi}
       />
       <VesselMap positions={data.positions} />
       <div className="last-update">
