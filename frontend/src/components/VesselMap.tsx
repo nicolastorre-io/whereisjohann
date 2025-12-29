@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { MapContainer, TileLayer, Polyline } from 'react-leaflet';
 import type { LatLngTuple } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -10,8 +11,11 @@ interface VesselMapProps {
 }
 
 export default function VesselMap({ positions }: Readonly<VesselMapProps>) {
-  const coords: LatLngTuple[] = positions.map((p) => [p.latitude, p.longitude]);
-  const lastPosition = positions.at(-1)!;
+  const coords = useMemo<LatLngTuple[]>(
+    () => positions.map((p) => [p.latitude, p.longitude]),
+    [positions]
+  );
+  const lastPosition = useMemo(() => positions.at(-1)!, [positions]);
 
   return (
     <div className="map-wrapper">

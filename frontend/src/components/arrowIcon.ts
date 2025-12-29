@@ -1,9 +1,10 @@
 import L from 'leaflet';
 
-export function createArrowIcon(cog?: number, isCurrent = false) {
+const iconCache = new Map<string, L.DivIcon>();
+
+function buildArrowIcon(cog: number, isCurrent: boolean): L.DivIcon {
   const size = isCurrent ? 32 : 24;
   const color = isCurrent ? '#ff6b35' : '#00b4d8';
-  const rotation = cog ?? 0;
 
   return new L.DivIcon({
     className: isCurrent ? 'current-marker' : 'ship-marker',
@@ -12,7 +13,7 @@ export function createArrowIcon(cog?: number, isCurrent = false) {
       height: ${size}px;
       ${isCurrent ? 'animation: pulse 2s infinite;' : ''}
     ">
-      <svg viewBox="0 0 24 24" width="${size}" height="${size}" style="transform: rotate(${rotation}deg);">
+      <svg viewBox="0 0 24 24" width="${size}" height="${size}" style="transform: rotate(${cog}deg);">
         <path
           d="M12 2 L20 20 L12 16 L4 20 Z"
           fill="${color}"
@@ -26,6 +27,17 @@ export function createArrowIcon(cog?: number, isCurrent = false) {
     iconAnchor: [size / 2, size / 2],
     popupAnchor: [0, -size / 2],
   });
+}
+
+export function createArrowIcon(cog = 0, isCurrent = false): L.DivIcon {
+  const key = `${cog}-${isCurrent}`;
+  const cached = iconCache.get(key);
+  if (cached) {
+    return cached;
+  }
+  const icon = buildArrowIcon(cog, isCurrent);
+  iconCache.set(key, icon);
+  return icon;
 }
 
 export const defaultIcon = createArrowIcon(0, false);

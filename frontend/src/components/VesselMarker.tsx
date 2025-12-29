@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Marker, Popup } from 'react-leaflet';
 import type { Position } from 'shared';
 import { formatDate } from '../utils/date';
@@ -13,10 +14,13 @@ interface VesselMarkerProps {
 }
 
 export default function VesselMarker({ position, index, isFirst, isLast }: VesselMarkerProps) {
-  const hasCog = position.cog !== undefined;
-  const icon = hasCog
-    ? createArrowIcon(position.cog, isLast)
-    : isLast ? defaultCurrentIcon : defaultIcon;
+  const hasCog = useMemo(() => position.cog !== undefined, [position.cog]);
+  const icon = useMemo(() => {
+    if (hasCog) {
+      return createArrowIcon(position.cog, isLast);
+    }
+    return isLast ? defaultCurrentIcon : defaultIcon;
+  }, [hasCog, position.cog, isLast]);
 
   return (
     <Marker

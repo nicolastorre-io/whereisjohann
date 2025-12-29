@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Header from '../components/Header';
 import StatsBar from '../components/StatsBar';
 import VesselMap from '../components/VesselMap';
@@ -16,23 +16,33 @@ export default function HomePage() {
       .catch((err: Error) => setError(err.message));
   }, []);
 
+  const lastPosition = useMemo(
+    () => data?.positions.at(-1),
+    [data]
+  );
+
+  const positions = useMemo(
+    () => lastPosition
+      ? data!.positions.filter((p) => p.mmsi === lastPosition.mmsi)
+      : [],
+    [data, lastPosition]
+  );
+
   if (error) return <div className="error">Error loading data: {error}</div>;
   if (!data) return <div className="loading">Loading vessel data...</div>;
-  if (!data.positions || data.positions.length === 0) {
+  if (!lastPosition) {
     return <div className="no-data">No positions recorded yet. Waiting for vessel data...</div>;
   }
-
-  const lastPosition = data.positions.at(-1)!;
 
   return (
     <>
       <Header />
       <StatsBar
-        positionsCount={data.positions.length}
+        positionsCount={positions.length}
         lastPosition={lastPosition}
         mmsi={lastPosition.mmsi}
       />
-      <VesselMap positions={data.positions} />
+      <VesselMap positions={positions} />
       <div className="last-update">
         Last updated: <span>{formatDate(lastPosition.time)}</span>
       </div>
