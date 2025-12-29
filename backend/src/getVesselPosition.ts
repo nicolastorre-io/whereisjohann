@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 import { fileURLToPath } from 'url';
-import type { VesselData, AISMessage } from 'shared';
+import type { VesselData, AISMessage, Position } from 'shared';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -20,10 +20,10 @@ function loadPositions(): VesselData {
   }
 }
 
-function savePosition(latitude: number, longitude: number, time: string, cog?: number, sog?: number, navigationalStatus?: number): void {
+function savePosition(position: Omit<Position, 'id'>): void {
   const data = loadPositions();
   const id = crypto.randomUUID();
-  data.positions.push({ id, latitude, longitude, time, cog, sog, navigationalStatus });
+  data.positions.push({ id, ...position });
   fs.writeFileSync(POSITION_FILE, JSON.stringify(data, null, 2));
   console.log('Position saved to position.json');
 }
@@ -38,7 +38,7 @@ function getVesselPosition(): void {
       APIKey: API_KEY,
       BoundingBoxes: [[[-90, -180], [90, 180]]],
       FiltersShipMMSI: [MMSI],
-      FilterMessageTypes: ['PositionReport'],
+      FilterMessageTypes: ['PositionReport', 'StandardClassBPositionReport', 'ExtendedClassBPositionReport'],
     };
     console.log('Connected. Sending subscription for MMSI:', MMSI);
     ws.send(JSON.stringify(subscribeMsg));
@@ -67,17 +67,23 @@ function getVesselPosition(): void {
     }
 
     const { latitude, longitude, ShipName, time_utc } = msg.MetaData;
-    const cog = msg.Message?.PositionReport?.Cog;
-    const sog = msg.Message?.PositionReport?.Sog;
-    const navigationalStatus = msg.Message?.PositionReport?.NavigationalStatus;
-    console.log(`\n${ShipName} Position:`);
+    const reportType = msg.MessageType;
+    const positionReport = msg.Message?.PositionReport;
+    const standardClassB = msg.Message?.StandardClassBPositionReport;
+    const extendedClassB = msg.Message?.ExtendedClassBPositionReport;
+
+    const cog = positionReport?.Cog ?? standardClassB?.Cog ?? extendedClassB?.Cog;
+    const sog = positionReport?.Sog ?? standardClassB?.Sog ?? extendedClassB?.Sog;
+    const navigationalStatus = positionReport?.NavigationalStatus;
+
+    console.log(`\n${ShipName} Position (${reportType}):`);
     console.log(`  Latitude:  ${latitude}`);
     console.log(`  Longitude: ${longitude}`);
     console.log(`  COG:       ${cog}`);
     console.log(`  SOG:       ${sog}`);
     console.log(`  Nav Status: ${navigationalStatus}`);
     console.log(`  Time:      ${time_utc}`);
-    savePosition(latitude, longitude, time_utc, cog, sog, navigationalStatus);
+    savePosition({ latitude, longitude, time: time_utc, cog, sog, navigationalStatus, reportType });
     positionReceived = true;
     ws.close();
     process.exit(0);

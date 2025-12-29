@@ -6,4 +6,5 @@ export interface Position {
   cog?: number;
   sog?: number;
   navigationalStatus?: number;
+  reportType?: string;
 }
