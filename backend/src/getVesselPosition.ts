@@ -1,6 +1,7 @@
 import WebSocket from 'ws';
 import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import type { VesselData, AISMessage } from 'shared';
 
@@ -21,7 +22,8 @@ function loadPositions(): VesselData {
 
 function savePosition(latitude: number, longitude: number, time: string, cog?: number, sog?: number): void {
   const data = loadPositions();
-  data.positions.push({ latitude, longitude, time, cog, sog });
+  const id = crypto.randomUUID();
+  data.positions.push({ id, latitude, longitude, time, cog, sog });
   fs.writeFileSync(POSITION_FILE, JSON.stringify(data, null, 2));
   console.log('Position saved to position.json');
 }

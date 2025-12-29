@@ -36,7 +36,7 @@ export default function VesselMap({ positions }: Readonly<VesselMapProps>) {
 
         {positions.map((pos, index) => (
           <VesselMarker
-            key={index}
+            key={pos.id}
             position={pos}
             index={index}
             isFirst={index === 0}
