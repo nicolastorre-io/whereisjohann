@@ -2,6 +2,7 @@ import { Marker, Popup } from 'react-leaflet';
 import type { Position } from 'shared';
 import { formatDate } from '../utils/date';
 import { getNavigationalStatus } from '../utils/navigationalStatus';
+import { knotsToKmh } from '../utils/speed';
 import { createArrowIcon, defaultIcon, defaultCurrentIcon } from './arrowIcon';
 
 interface VesselMarkerProps {
@@ -26,6 +27,12 @@ export default function VesselMarker({ position, index, isFirst, isLast }: Vesse
         <div className="popup-title">
           {isLast ? 'Current Position' : isFirst ? 'Start Position' : `Position #${index + 1}`}
         </div>
+        {position.name && (
+          <div className="popup-row">
+            <span className="label">Vessel</span>
+            <span className="value">{position.name}</span>
+          </div>
+        )}
         <div className="popup-row">
           <span className="label">Latitude</span>
           <span className="value">{position.latitude.toFixed(5)}</span>
@@ -43,7 +50,7 @@ export default function VesselMarker({ position, index, isFirst, isLast }: Vesse
         {position.sog !== undefined && (
           <div className="popup-row">
             <span className="label">Speed</span>
-            <span className="value">{position.sog.toFixed(1)} kn</span>
+            <span className="value">{position.sog.toFixed(1)} kn ({knotsToKmh(position.sog).toFixed(1)} km/h)</span>
           </div>
         )}
         {position.navigationalStatus !== undefined && (

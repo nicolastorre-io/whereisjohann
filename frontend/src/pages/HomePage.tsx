@@ -26,7 +26,7 @@ export default function HomePage() {
 
   return (
     <>
-      <Header mmsi={lastPosition.mmsi} lastPosition={lastPosition} />
+      <Header />
       <StatsBar
         positionsCount={data.positions.length}
         lastPosition={lastPosition}
