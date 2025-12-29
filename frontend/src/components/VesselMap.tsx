@@ -1,46 +1,9 @@
-import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
-import L from 'leaflet';
+import { MapContainer, TileLayer, Polyline } from 'react-leaflet';
 import type { LatLngTuple } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import type { Position } from 'shared';
-import { formatDate } from '../utils/date';
-import { useFitBounds } from '../hooks/useFitBounds';
-
-function MapController({ positions }: { positions: LatLngTuple[] }) {
-  useFitBounds(positions);
-  return null;
-}
-
-const shipIcon = new L.DivIcon({
-  className: 'ship-marker',
-  html: `<div style="
-    width: 24px;
-    height: 24px;
-    background: linear-gradient(135deg, #00b4d8, #0077b6);
-    border-radius: 50%;
-    border: 3px solid white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-  "></div>`,
-  iconSize: [24, 24],
-  iconAnchor: [12, 12],
-  popupAnchor: [0, -12],
-});
-
-const currentIcon = new L.DivIcon({
-  className: 'current-marker',
-  html: `<div style="
-    width: 32px;
-    height: 32px;
-    background: linear-gradient(135deg, #ff6b35, #ff4444);
-    border-radius: 50%;
-    border: 4px solid white;
-    box-shadow: 0 4px 15px rgba(255,107,53,0.5);
-    animation: pulse 2s infinite;
-  "></div>`,
-  iconSize: [32, 32],
-  iconAnchor: [16, 16],
-  popupAnchor: [0, -16],
-});
+import MapController from './MapController';
+import VesselMarker from './VesselMarker';
 
 interface VesselMapProps {
   positions: Position[];
@@ -48,7 +11,7 @@ interface VesselMapProps {
 
 export default function VesselMap({ positions }: Readonly<VesselMapProps>) {
   const coords: LatLngTuple[] = positions.map((p) => [p.latitude, p.longitude]);
-  const lastPosition = positions[positions.length - 1];
+  const lastPosition = positions.at(-1)!;
 
   return (
     <div className="map-wrapper">
@@ -71,36 +34,15 @@ export default function VesselMap({ positions }: Readonly<VesselMapProps>) {
           dashArray="10, 5"
         />
 
-        {positions.map((pos, index) => {
-          const isLast = index === positions.length - 1;
-          const isFirst = index === 0;
-
-          return (
-            <Marker
-              key={index}
-              position={[pos.latitude, pos.longitude]}
-              icon={isLast ? currentIcon : shipIcon}
-            >
-              <Popup>
-                <div className="popup-title">
-                  {isLast ? 'Current Position' : isFirst ? 'Start Position' : `Position #${index + 1}`}
-                </div>
-                <div className="popup-row">
-                  <span className="label">Latitude</span>
-                  <span className="value">{pos.latitude.toFixed(5)}°</span>
-                </div>
-                <div className="popup-row">
-                  <span className="label">Longitude</span>
-                  <span className="value">{pos.longitude.toFixed(5)}°</span>
-                </div>
-                <div className="popup-row">
-                  <span className="label">Time</span>
-                  <span className="value">{formatDate(pos.time)}</span>
-                </div>
-              </Popup>
-            </Marker>
-          );
-        })}
+        {positions.map((pos, index) => (
+          <VesselMarker
+            key={index}
+            position={pos}
+            index={index}
+            isFirst={index === 0}
+            isLast={index === positions.length - 1}
+          />
+        ))}
       </MapContainer>
     </div>
   );
