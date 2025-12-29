@@ -16,7 +16,7 @@ function loadPositions(): VesselData {
   try {
     return JSON.parse(fs.readFileSync(POSITION_FILE, 'utf8'));
   } catch {
-    return { vessel: 'MSC Magnifica', mmsi: MMSI, positions: [] };
+    return { mmsi: MMSI, positions: [] };
   }
 }
 

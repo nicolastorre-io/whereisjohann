@@ -33,6 +33,15 @@
   margin: 0 auto;
 }
 
+.header .subtext a {
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+.header .subtext a:hover {
+  text-decoration: underline;
+}
+
 /* Stats Bar */
 .stats-bar {
   display: flex;

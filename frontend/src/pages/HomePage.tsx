@@ -26,7 +26,7 @@ export default function HomePage() {
 
   return (
     <>
-      <Header vesselName={data.vessel} />
+      <Header mmsi={data.mmsi} />
       <StatsBar
         positionsCount={data.positions.length}
         lastPosition={lastPosition}

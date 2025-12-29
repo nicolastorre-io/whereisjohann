@@ -14,12 +14,8 @@ export default function StatsBar({ positionsCount, lastPosition, mmsi }: StatsBa
         <div className="label">Positions</div>
       </div>
       <div className="stat-card">
-        <div className="value">{lastPosition.latitude.toFixed(4)}°</div>
-        <div className="label">Latitude</div>
-      </div>
-      <div className="stat-card">
-        <div className="value">{lastPosition.longitude.toFixed(4)}°</div>
-        <div className="label">Longitude</div>
+        <div className="value">{lastPosition.latitude.toFixed(4)}, {lastPosition.longitude.toFixed(4)}</div>
+        <div className="label">Coordinates</div>
       </div>
       <div className="stat-card">
         <div className="value">{mmsi}</div>

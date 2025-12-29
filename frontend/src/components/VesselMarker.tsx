@@ -28,11 +28,11 @@ export default function VesselMarker({ position, index, isFirst, isLast }: Vesse
         </div>
         <div className="popup-row">
           <span className="label">Latitude</span>
-          <span className="value">{position.latitude.toFixed(5)}°</span>
+          <span className="value">{position.latitude.toFixed(5)}</span>
         </div>
         <div className="popup-row">
           <span className="label">Longitude</span>
-          <span className="value">{position.longitude.toFixed(5)}°</span>
+          <span className="value">{position.longitude.toFixed(5)}</span>
         </div>
         {position.cog !== undefined && (
           <div className="popup-row">
