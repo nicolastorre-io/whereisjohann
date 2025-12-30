@@ -61,6 +61,18 @@
       "navigationalStatus": 0,
       "positionReportType": "PositionReport",
       "name": "MSC MAGNIFICA"
+    },
+    {
+      "id": "3ec5b346-ab51-41fc-abaa-ef0c6c6e2dc3",
+      "mmsi": 352594000,
+      "latitude": 41.058225,
+      "longitude": 2.81905,
+      "time": "2025-12-30 09:58:56.090518851 +0000 UTC",
+      "cog": 218.8,
+      "sog": 10,
+      "navigationalStatus": 0,
+      "positionReportType": "PositionReport",
+      "name": "MSC MAGNIFICA"
     }
   ]
 }
