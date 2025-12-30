@@ -2,11 +2,9 @@
   "name": "backend",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "build": "tsc",
-    "track": "node dist/getVesselPosition.js",
-    "test": "node dist/testConnection.js"
+    "track": "node dist/getVesselPosition.js"
   },
   "dependencies": {
     "shared": "1.0.0",
