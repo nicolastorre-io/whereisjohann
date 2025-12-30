@@ -6,7 +6,6 @@ on:
     paths:
       - 'frontend/**'
       - 'shared/**'
-      - 'data/**'
   workflow_dispatch:
 
 permissions:
@@ -32,9 +31,6 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-
-      - name: Copy position data
-        run: cp data/position.json frontend/public/ 2>/dev/null || echo '{"positions":[]}' > frontend/public/position.json
 
       - name: Build
         run: yarn build

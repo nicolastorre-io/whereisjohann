@@ -1,8 +1,8 @@
-name: Track Vessel Position
+name: Track Vessel Position (VesselFinder)
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Every hour
+    - cron: '30 * * * *'  # Every hour at :30 (offset from AISStream)
   workflow_dispatch:  # Allow manual trigger
 
 permissions:
@@ -25,14 +25,16 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Install Chrome for Puppeteer
+        run: npx puppeteer browsers install chrome
+
       - name: Build
         run: yarn workspace shared build && yarn workspace backend build
 
-      - name: Get vessel position from AISStream
+      - name: Get vessel position from VesselFinder
         env:
-          AISSTREAM_API_KEY: ${{ secrets.AISSTREAM_API_KEY }}
           MMSI: ${{ vars.MMSI }}
-        run: yarn track:aisstream
+        run: yarn track:vesselfinder
 
       - name: Commit and push position
         id: commit
@@ -43,7 +45,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
-            git commit -m "[POSITION] Update vessel position"
+            git commit -m "[POSITION] Update vessel position (VesselFinder)"
             git push
             echo "changed=true" >> $GITHUB_OUTPUT
           fi

@@ -1,5 +1,5 @@
 import WebSocket from 'ws';
-import { etaToTimestamp } from 'shared';
+import { etaToTimestamp, EPositionReportType } from 'shared';
 import type { IAISMessage, IPosition, IShipStaticData, IShipInfo } from 'shared';
 import { PositionRepository } from '../repositories/PositionRepository';
 
@@ -138,7 +138,7 @@ export class AISStreamVesselPositionService {
         const navigationalStatus = positionReport?.NavigationalStatus;
 
         positionData = {
-          mmsi: msgMmsi,
+          mmsi: Number.parseInt(msgMmsi, 10),
           latitude,
           longitude,
           positionTimeMetaData: time_utc,
@@ -146,7 +146,7 @@ export class AISStreamVesselPositionService {
           cog,
           sog,
           navigationalStatus,
-          positionReportType: messageType,
+          positionReportType: messageType as EPositionReportType,
           name: shipInfo.name || ShipName?.trim(),
           callSign: shipInfo.callSign,
           destination: shipInfo.destination,

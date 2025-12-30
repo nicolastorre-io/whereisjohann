@@ -3,10 +3,10 @@ import type { IPosition } from 'shared';
 interface StatsBarProps {
   positionsCount: number;
   lastPosition: IPosition;
-  mmsi: string;
+  mmsi: number;
 }
 
-const GITHUB_POSITION_URL = 'https://github.com/nicolastorre-io/whereisjohann/blob/main/data/position.json';
+const GITHUB_POSITION_URL = 'https://github.com/nicolastorre-io/whereisjohann/blob/main/frontend/public/position.json';
 
 export default function StatsBar({ positionsCount, lastPosition, mmsi }: StatsBarProps) {
   const googleMapsUrl = `https://www.google.com/maps?q=${lastPosition.latitude},${lastPosition.longitude}`;

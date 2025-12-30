@@ -1,6 +1,8 @@
+import { EPositionReportType } from '../enums/EPositionReportType';
+
 export interface IPosition {
   id: string;
-  mmsi: string;
+  mmsi: number;
   latitude: number;
   longitude: number;
   positionTimeMetaData: string;
@@ -8,7 +10,7 @@ export interface IPosition {
   cog?: number;
   sog?: number;
   navigationalStatus?: number;
-  positionReportType?: string;
+  positionReportType?: EPositionReportType;
   name?: string;
   callSign?: string;
   destination?: string;

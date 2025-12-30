@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "build": "tsc",
-    "track": "node dist/getVesselPosition.js"
+    "track:aisstream": "node dist/getVesselPositionFromAISStream.js",
+    "track:vesselfinder": "node dist/getVesselPositionFromVesselFinder.js"
   },
   "dependencies": {
+    "puppeteer": "^24.0.0",
     "shared": "1.0.0",
     "ws": "^8.18.3"
   },

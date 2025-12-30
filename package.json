@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "yarn workspace frontend dev",
     "build": "yarn workspace shared build && yarn workspace frontend build",
-    "track": "yarn workspace backend track"
+    "track:aisstream": "yarn workspace backend track:aisstream",
+    "track:vesselfinder": "yarn workspace backend track:vesselfinder"
   },
   "devDependencies": {
     "prettier": "^3.7.4"

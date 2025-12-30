@@ -7,7 +7,7 @@ export class PositionRepository {
   private readonly filePath: string;
 
   constructor(filePath?: string) {
-    this.filePath = filePath ?? path.join(__dirname, '..', '..', '..', 'data', 'position.json');
+    this.filePath = filePath ?? path.join(__dirname, '..', '..', '..', 'frontend', 'public', 'position.json');
   }
 
   load(): IVesselData {
