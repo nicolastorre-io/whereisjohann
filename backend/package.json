@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc",
     "track:aisstream": "node dist/getVesselPositionFromAISStream.js",
-    "track:vesselfinder": "node dist/getVesselPositionFromVesselFinder.js"
+    "track:myshiptracking": "node dist/getVesselPositionFromMyShipTracking.js"
   },
   "dependencies": {
     "puppeteer": "^24.0.0",

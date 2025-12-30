@@ -1,4 +1,4 @@
-name: Track Vessel Position (VesselFinder)
+name: Track Vessel Position (MyShipTracking)
 
 on:
   schedule:
@@ -31,10 +31,10 @@ jobs:
       - name: Build
         run: yarn workspace shared build && yarn workspace backend build
 
-      - name: Get vessel position from VesselFinder
+      - name: Get vessel position from MyShipTracking
         env:
           MMSI: ${{ vars.MMSI }}
-        run: yarn track:vesselfinder
+        run: yarn track:myshiptracking
 
       - name: Commit and push position
         id: commit
@@ -45,7 +45,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
-            git commit -m "[POSITION] Update vessel position (VesselFinder)"
+            git commit -m "[POSITION] Update vessel position (MyShipTracking)"
             git push
             echo "changed=true" >> $GITHUB_OUTPUT
           fi

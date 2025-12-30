@@ -12,7 +12,6 @@ export interface IPosition {
   navigationalStatus?: number;
   positionReportType?: EPositionReportType;
   name?: string;
-  callSign?: string;
   destination?: string;
   eta?: number;
 }

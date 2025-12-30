@@ -21,6 +21,19 @@ export class AISStreamVesselPositionService {
     this.apiKey = apiKey;
   }
 
+  private mapMessageTypeToEnum(messageType: string | undefined): EPositionReportType {
+    switch (messageType) {
+      case 'PositionReport':
+        return EPositionReportType.AISStreamPositionReport;
+      case 'StandardClassBPositionReport':
+        return EPositionReportType.AISStreamStandardClassBPositionReport;
+      case 'ExtendedClassBPositionReport':
+        return EPositionReportType.AISStreamExtendedClassBPositionReport;
+      default:
+        return EPositionReportType.AISStreamPositionReport;
+    }
+  }
+
   getVesselPosition(): void {
     const ws = new WebSocket(AISSTREAM_WS_URL);
 
@@ -33,7 +46,6 @@ export class AISStreamVesselPositionService {
       console.log(`\nSaving position:`);
       console.log(`  MMSI:              ${positionData.mmsi}`);
       console.log(`  Name:              ${positionData.name}`);
-      console.log(`  CallSign:          ${positionData.callSign}`);
       console.log(`  Destination:       ${positionData.destination}`);
       console.log(`  ETA:               ${positionData.eta ? new Date(positionData.eta).toISOString() : 'N/A'}`);
       console.log(`  Latitude:          ${positionData.latitude}`);
@@ -102,14 +114,12 @@ export class AISStreamVesselPositionService {
         const staticData: IShipStaticData = msg.Message.ShipStaticData;
         shipInfo = {
           name: staticData.Name?.trim(),
-          callSign: staticData.CallSign?.trim(),
           destination: staticData.Destination?.trim(),
           eta: staticData.Eta ? etaToTimestamp(staticData.Eta) : undefined,
           shipTimeMetaData: msg.MetaData.time_utc,
         };
         console.log(`\nShip Static Data received:`);
         console.log(`  Name:        ${shipInfo.name}`);
-        console.log(`  CallSign:    ${shipInfo.callSign}`);
         console.log(`  Destination: ${shipInfo.destination}`);
         console.log(`  ETA:         ${shipInfo.eta ? new Date(shipInfo.eta).toISOString() : 'N/A'}`);
         console.log(`  Time:        ${shipInfo.shipTimeMetaData}`);
@@ -117,7 +127,6 @@ export class AISStreamVesselPositionService {
         // If we already have position data, update it with ship info and save
         if (positionData) {
           positionData.name = shipInfo.name || positionData.name;
-          positionData.callSign = shipInfo.callSign;
           positionData.destination = shipInfo.destination;
           positionData.eta = shipInfo.eta;
           positionData.shipTimeMetaData = shipInfo.shipTimeMetaData;
@@ -146,9 +155,8 @@ export class AISStreamVesselPositionService {
           cog,
           sog,
           navigationalStatus,
-          positionReportType: messageType as EPositionReportType,
+          positionReportType: this.mapMessageTypeToEnum(messageType),
           name: shipInfo.name || ShipName?.trim(),
-          callSign: shipInfo.callSign,
           destination: shipInfo.destination,
           eta: shipInfo.eta,
         };

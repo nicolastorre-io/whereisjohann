@@ -2,11 +2,11 @@ import { IShipEta } from "../interfaces/IShipStaticData";
 
 export function etaToTimestamp(eta: IShipEta): number {
   const now = new Date();
-  let year = now.getFullYear();
-  if (eta.Month < now.getMonth() + 1) {
+  let year = now.getUTCFullYear();
+  if (eta.Month < now.getUTCMonth() + 1) {
     year++;
   }
-  return new Date(year, eta.Month - 1, eta.Day, eta.Hour, eta.Minute).getTime();
+  return Date.UTC(year, eta.Month - 1, eta.Day, eta.Hour, eta.Minute);
 }
 
 export function formatDate(dateStr: string): string {

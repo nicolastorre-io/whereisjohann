@@ -1,6 +1,6 @@
 export enum EPositionReportType {
-  PositionReport = 'PositionReport',
-  StandardClassBPositionReport = 'StandardClassBPositionReport',
-  ExtendedClassBPositionReport = 'ExtendedClassBPositionReport',
-  VesselFinderScrape = 'VesselFinderScrape',
+  AISStreamPositionReport = 'AISStreamPositionReport',
+  AISStreamStandardClassBPositionReport = 'AISStreamStandardClassBPositionReport',
+  AISStreamExtendedClassBPositionReport = 'AISStreamExtendedClassBPositionReport',
+  MyShipTrackingScrape = 'MyShipTrackingScrape',
 }
