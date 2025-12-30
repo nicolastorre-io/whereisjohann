@@ -1,0 +1,17 @@
+{
+  "positions": [
+    {
+      "id": "97bebbec-fbe1-46cb-93bc-f0e4d6c3f60b",
+      "mmsi": 352594000,
+      "latitude": 41.00734,
+      "longitude": 2.76506,
+      "positionTimeMetaData": "2025-12-30T10:22:00Z",
+      "cog": 219.3,
+      "sog": 10.5,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA",
+      "destination": "ESALC",
+      "eta": 1767164400000
+    }
+  ]
+}
