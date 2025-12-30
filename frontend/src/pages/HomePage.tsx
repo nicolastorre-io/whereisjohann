@@ -2,11 +2,11 @@ import { useEffect, useMemo, useState } from 'react';
 import Header from '../components/Header';
 import StatsBar from '../components/StatsBar';
 import VesselMap from '../components/VesselMap';
-import type { VesselData } from 'shared';
+import type { IVesselData } from 'shared';
 import { formatDate } from 'shared';
 
 export default function HomePage() {
-  const [data, setData] = useState<VesselData | null>(null);
+  const [data, setData] = useState<IVesselData | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {

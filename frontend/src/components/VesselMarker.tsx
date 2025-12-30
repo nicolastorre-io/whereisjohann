@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 import { Marker, Popup } from 'react-leaflet';
-import type { Position } from 'shared';
+import type { IPosition } from 'shared';
 import { formatDate, formatEta, getNavigationalStatus, knotsToKmh } from 'shared';
 import { createArrowIcon, defaultIcon, defaultCurrentIcon } from './arrowIcon';
 
 interface VesselMarkerProps {
-  position: Position;
+  position: IPosition;
   index: number;
   isFirst: boolean;
   isLast: boolean;

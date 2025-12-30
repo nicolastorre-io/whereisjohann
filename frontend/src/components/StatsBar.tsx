@@ -1,8 +1,8 @@
-import type { Position } from 'shared';
+import type { IPosition } from 'shared';
 
 interface StatsBarProps {
   positionsCount: number;
-  lastPosition: Position;
+  lastPosition: IPosition;
   mmsi: string;
 }
 

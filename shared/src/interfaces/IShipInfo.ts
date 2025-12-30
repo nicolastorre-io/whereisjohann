@@ -1,4 +1,4 @@
-export interface ShipInfo {
+export interface IShipInfo {
   name?: string;
   callSign?: string;
   destination?: string;

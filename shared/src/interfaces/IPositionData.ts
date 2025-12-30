@@ -1,4 +1,4 @@
-export interface PositionData {
+export interface IPositionData {
   mmsi: string;
   latitude: number;
   longitude: number;

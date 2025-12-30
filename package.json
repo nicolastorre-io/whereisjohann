@@ -10,5 +10,8 @@
     "dev": "yarn workspace frontend dev",
     "build": "yarn workspace shared build && yarn workspace frontend build",
     "track": "yarn workspace backend track"
+  },
+  "devDependencies": {
+    "prettier": "^3.7.4"
   }
 }

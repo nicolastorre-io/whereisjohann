@@ -1,4 +1,4 @@
-export interface AISMetaData {
+export interface IAISMetaData {
   MMSI: string;
   latitude: number;
   longitude: number;

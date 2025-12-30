@@ -1,30 +1,30 @@
-export interface ShipDimension {
+export interface IShipDimension {
   A: number;
   B: number;
   C: number;
   D: number;
 }
 
-export interface ShipEta {
+export interface IShipEta {
   Day: number;
   Hour: number;
   Minute: number;
   Month: number;
 }
 
-export interface ShipStaticData {
+export interface IShipStaticData {
   Name: string;
   CallSign: string;
   Type: number;
   ImoNumber: number;
   Destination: string;
   MaximumStaticDraught: number;
-  Dimension: ShipDimension;
-  Eta: ShipEta;
+  Dimension: IShipDimension;
+  Eta: IShipEta;
 }
 
-export interface ShipStaticDataFile {
+export interface IShipStaticDataFile {
   mmsi: string;
   lastUpdated: string;
-  data: ShipStaticData | null;
+  data: IShipStaticData | null;
 }

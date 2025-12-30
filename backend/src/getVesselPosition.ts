@@ -4,7 +4,7 @@ import path from 'path';
 import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import { etaToTimestamp } from 'shared';
-import type { VesselData, AISMessage, Position, ShipStaticData, ShipInfo } from 'shared';
+import type { IVesselData, IAISMessage, IPosition, IShipStaticData, IShipInfo } from 'shared';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -12,7 +12,7 @@ const MMSI = process.env.MMSI || '352594000';
 const API_KEY = process.env.AISSTREAM_API_KEY || 'YOUR_API_KEY';
 const POSITION_FILE = path.join(__dirname, '..', '..', 'data', 'position.json');
 
-function loadPositions(): VesselData {
+function loadPositions(): IVesselData {
   try {
     return JSON.parse(fs.readFileSync(POSITION_FILE, 'utf8'));
   } catch {
@@ -20,7 +20,7 @@ function loadPositions(): VesselData {
   }
 }
 
-function savePosition(position: Omit<Position, 'id'>): void {
+function savePosition(position: Omit<IPosition, 'id'>): void {
   const data = loadPositions();
   const id = crypto.randomUUID();
   data.positions.push({ id, ...position });
@@ -31,8 +31,8 @@ function savePosition(position: Omit<Position, 'id'>): void {
 function getVesselPosition(): void {
   const ws = new WebSocket('wss://stream.aisstream.io/v0/stream');
 
-  let shipInfo: ShipInfo = {};
-  let positionData: Omit<Position, 'id'> | null = null;
+  let shipInfo: IShipInfo = {};
+  let positionData: Omit<IPosition, 'id'> | null = null;
 
   function saveAndExit(): void {
     if (!positionData) return;
@@ -83,7 +83,7 @@ function getVesselPosition(): void {
   });
 
   ws.on('message', (data: WebSocket.RawData) => {
-    const msg: AISMessage = JSON.parse(data.toString());
+    const msg: IAISMessage = JSON.parse(data.toString());
 
     if (msg.error || msg.Error) {
       console.error('Server error:', msg.error || msg.Error);
@@ -99,7 +99,7 @@ function getVesselPosition(): void {
 
     // Handle ShipStaticData message
     if (messageType === 'ShipStaticData' && msg.Message?.ShipStaticData) {
-      const staticData: ShipStaticData = msg.Message.ShipStaticData;
+      const staticData: IShipStaticData = msg.Message.ShipStaticData;
       shipInfo = {
         name: staticData.Name?.trim(),
         callSign: staticData.CallSign?.trim(),

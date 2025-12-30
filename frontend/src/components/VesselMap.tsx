@@ -2,12 +2,12 @@ import { useMemo } from 'react';
 import { MapContainer, TileLayer, Polyline } from 'react-leaflet';
 import type { LatLngTuple } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import type { Position } from 'shared';
+import type { IPosition } from 'shared';
 import MapController from './MapController';
 import VesselMarker from './VesselMarker';
 
 interface VesselMapProps {
-  positions: Position[];
+  positions: IPosition[];
 }
 
 export default function VesselMap({ positions }: Readonly<VesselMapProps>) {

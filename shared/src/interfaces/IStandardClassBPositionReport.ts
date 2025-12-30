@@ -1,4 +1,4 @@
-export interface ExtendedClassBPositionReport {
+export interface IStandardClassBPositionReport {
   Cog: number;
   Sog: number;
   TrueHeading: number;
