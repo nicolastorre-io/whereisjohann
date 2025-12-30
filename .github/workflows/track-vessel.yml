@@ -31,7 +31,6 @@ jobs:
       - name: Get vessel position
         env:
           AISSTREAM_API_KEY: ${{ secrets.AISSTREAM_API_KEY }}
-          TIMEOUT_MS: ${{ vars.TIMEOUT_MS }}
           MMSI: ${{ vars.MMSI }}
         run: yarn track
 

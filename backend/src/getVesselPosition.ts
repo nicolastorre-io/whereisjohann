@@ -57,7 +57,8 @@ function getVesselPosition(): void {
     if (positionData) {
       saveAndExit();
     } else {
-      process.exit(1);
+      console.log('No position data received. Vessel may not be transmitting.');
+      process.exit(0);
     }
   }
 
