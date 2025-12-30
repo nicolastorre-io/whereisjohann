@@ -9,9 +9,13 @@ if (!MMSI) {
 }
 
 const positionRepository = new PositionRepository();
-const scraperService = new MyShipTrackingScraperService(positionRepository, MMSI);
+const scraperService = new MyShipTrackingScraperService(
+  positionRepository,
+  MMSI
+);
 
-scraperService.getVesselPosition()
+scraperService
+  .getVesselPosition()
   .then(() => {
     console.log('MyShipTracking scraping completed successfully');
   })
