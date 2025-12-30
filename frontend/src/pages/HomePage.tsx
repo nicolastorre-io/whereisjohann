@@ -44,7 +44,7 @@ export default function HomePage() {
       />
       <VesselMap positions={positions} />
       <div className="last-update">
-        Last updated: <span>{formatDate(lastPosition.time)}</span>
+        Last updated: <span>{formatDate(lastPosition.positionTimeMetaData)}</span>
       </div>
     </>
   );

@@ -3,7 +3,8 @@ export interface IPosition {
   mmsi: string;
   latitude: number;
   longitude: number;
-  time: string;
+  positionTimeMetaData: string;
+  shipTimeMetaData?: string;
   cog?: number;
   sog?: number;
   navigationalStatus?: number;

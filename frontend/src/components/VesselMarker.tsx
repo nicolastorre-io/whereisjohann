@@ -83,7 +83,7 @@ export default function VesselMarker({ position, index, isFirst, isLast }: Vesse
         )}
         <div className="popup-row">
           <span className="label">Time</span>
-          <span className="value">{formatDate(position.time)}</span>
+          <span className="value">{formatDate(position.positionTimeMetaData)}</span>
         </div>
       </Popup>
     </Marker>

@@ -3,4 +3,5 @@ export interface IShipInfo {
   callSign?: string;
   destination?: string;
   eta?: number;
+  shipTimeMetaData?: string;
 }
