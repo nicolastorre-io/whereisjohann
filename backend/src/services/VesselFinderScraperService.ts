@@ -153,154 +153,126 @@ export class VesselFinderScraperService {
 
       // Extract vessel data from the page
       const vesselData = await page.evaluate(() => {
-        // Look for coordinates in various formats
-        let latitude: number | null = null;
-        let longitude: number | null = null;
-        let speed: number | null = null;
-        let course: number | null = null;
-        let name: string | null = null;
-        let destination: string | null = null;
-        let status: string | null = null;
+        type Coordinates = { latitude: number; longitude: number } | null;
 
-        // Try to find coordinates from script tags (map initialization data)
-        const scripts = document.querySelectorAll('script');
-        for (const script of scripts) {
-          const content = script.textContent || '';
-          // Look for lat/lon in JSON data or variable assignments
-          const latMatch = /["']?(?:lat|latitude)["']?\s*[:=]\s*(-?\d+\.\d+)/i.exec(content);
-          const lonMatch = /["']?(?:lon|lng|longitude)["']?\s*[:=]\s*(-?\d+\.\d+)/i.exec(content);
-          if (latMatch && lonMatch) {
-            latitude = Number.parseFloat(latMatch[1]);
-            longitude = Number.parseFloat(lonMatch[1]);
-            break;
-          }
-          // Look for coordinates array [lat, lon]
-          const coordArrayMatch = /center["']?\s*[:=]\s*\[(-?\d+\.\d+)\s*,\s*(-?\d+\.\d+)\]/i.exec(content);
-          if (coordArrayMatch) {
-            latitude = Number.parseFloat(coordArrayMatch[1]);
-            longitude = Number.parseFloat(coordArrayMatch[2]);
-            break;
-          }
-        }
-
-        // Try to find coordinates from data attributes
-        if (!latitude || !longitude) {
-          const mapEl = document.querySelector('[data-lat][data-lon], [data-latitude][data-longitude]');
-          if (mapEl) {
-            const lat = mapEl.getAttribute('data-lat') || mapEl.getAttribute('data-latitude');
-            const lon = mapEl.getAttribute('data-lon') || mapEl.getAttribute('data-longitude');
-            if (lat && lon) {
-              latitude = Number.parseFloat(lat);
-              longitude = Number.parseFloat(lon);
+        // Helper: Extract coordinates from script tags
+        function extractCoordsFromScripts(): Coordinates {
+          const scripts = document.querySelectorAll('script');
+          for (const script of scripts) {
+            const content = script.textContent || '';
+            const latMatch = /["']?(?:lat|latitude)["']?\s*[:=]\s*(-?\d+\.\d+)/i.exec(content);
+            const lonMatch = /["']?(?:lon|lng|longitude)["']?\s*[:=]\s*(-?\d+\.\d+)/i.exec(content);
+            if (latMatch && lonMatch) {
+              return { latitude: Number.parseFloat(latMatch[1]), longitude: Number.parseFloat(lonMatch[1]) };
+            }
+            const coordArrayMatch = /center["']?\s*[:=]\s*\[(-?\d+\.\d+)\s*,\s*(-?\d+\.\d+)\]/i.exec(content);
+            if (coordArrayMatch) {
+              return { latitude: Number.parseFloat(coordArrayMatch[1]), longitude: Number.parseFloat(coordArrayMatch[2]) };
             }
           }
+          return null;
         }
 
-        // Try to find data from the page content
-        const pageText = document.body.innerText;
-
-        // Try multiple coordinate formats
-        // Format 1: 41.00734° N / 2.76506° E
-        const coordRegex1 = /(-?\d+\.?\d*)°?\s*([NS])\s*[/,]\s*(-?\d+\.?\d*)°?\s*([EW])/i;
-        // Format 2: Position: 41.00734, 2.76506 or Coordinates: 41.00734, 2.76506
-        const coordRegex2 = /(?:Position|Coordinates|Lat\/?Lon)[:\s]+(-?\d+\.\d+)[,\s]+(-?\d+\.\d+)/i;
-        // Format 3: Latitude: 41.00734 ... Longitude: 2.76506
-        const coordRegex3 = /Latitude[:\s]+(-?\d+\.\d+).*?Longitude[:\s]+(-?\d+\.\d+)/is;
-        // Format 4: 41° 0.44' N, 2° 45.90' E (degrees and minutes)
-        const coordRegex4 = /(\d+)°\s*(\d+\.?\d*)[''′]\s*([NS])[,\s]+(\d+)°\s*(\d+\.?\d*)[''′]\s*([EW])/i;
-
-        let coordMatch = coordRegex1.exec(pageText);
-        if (coordMatch) {
-          latitude = Number.parseFloat(coordMatch[1]) * (coordMatch[2].toUpperCase() === 'S' ? -1 : 1);
-          longitude = Number.parseFloat(coordMatch[3]) * (coordMatch[4].toUpperCase() === 'W' ? -1 : 1);
-        }
-
-        if (!latitude || !longitude) {
-          coordMatch = coordRegex2.exec(pageText);
-          if (coordMatch) {
-            latitude = Number.parseFloat(coordMatch[1]);
-            longitude = Number.parseFloat(coordMatch[2]);
+        // Helper: Extract coordinates from data attributes
+        function extractCoordsFromDataAttrs(): Coordinates {
+          const mapEl = document.querySelector('[data-lat][data-lon], [data-latitude][data-longitude]') as HTMLElement | null;
+          if (mapEl?.dataset) {
+            const lat = mapEl.dataset.lat ?? mapEl.dataset.latitude;
+            const lon = mapEl.dataset.lon ?? mapEl.dataset.longitude;
+            if (lat && lon) {
+              return { latitude: Number.parseFloat(lat), longitude: Number.parseFloat(lon) };
+            }
           }
+          return null;
         }
 
-        if (!latitude || !longitude) {
-          coordMatch = coordRegex3.exec(pageText);
-          if (coordMatch) {
-            latitude = Number.parseFloat(coordMatch[1]);
-            longitude = Number.parseFloat(coordMatch[2]);
+        // Helper: Extract coordinates from page text
+        function extractCoordsFromText(pageText: string): Coordinates {
+          // Format 1: 41.00734° N / 2.76506° E
+          const match1 = /(-?\d+\.?\d*)°?\s*([NS])\s*[/,]\s*(-?\d+\.?\d*)°?\s*([EW])/i.exec(pageText);
+          if (match1) {
+            return {
+              latitude: Number.parseFloat(match1[1]) * (match1[2].toUpperCase() === 'S' ? -1 : 1),
+              longitude: Number.parseFloat(match1[3]) * (match1[4].toUpperCase() === 'W' ? -1 : 1),
+            };
           }
-        }
-
-        if (!latitude || !longitude) {
-          coordMatch = coordRegex4.exec(pageText);
-          if (coordMatch) {
-            const latDeg = Number.parseFloat(coordMatch[1]);
-            const latMin = Number.parseFloat(coordMatch[2]);
-            latitude = (latDeg + latMin / 60) * (coordMatch[3].toUpperCase() === 'S' ? -1 : 1);
-            const lonDeg = Number.parseFloat(coordMatch[4]);
-            const lonMin = Number.parseFloat(coordMatch[5]);
-            longitude = (lonDeg + lonMin / 60) * (coordMatch[6].toUpperCase() === 'W' ? -1 : 1);
+          // Format 2: Position: 41.00734, 2.76506
+          const match2 = /(?:Position|Coordinates|Lat\/?Lon)[:\s]+(-?\d+\.\d+)[,\s]+(-?\d+\.\d+)/i.exec(pageText);
+          if (match2) {
+            return { latitude: Number.parseFloat(match2[1]), longitude: Number.parseFloat(match2[2]) };
           }
-        }
-
-        // Parse course and speed (format: "Course / Speed 218° / 10.5 kn" or "218° / 10.5 kn")
-        const courseSpeedRegex = /(\d+\.?\d*)°\s*\/\s*(\d+\.?\d*)\s*kn/i;
-        const courseSpeedMatch = courseSpeedRegex.exec(pageText);
-        if (courseSpeedMatch) {
-          course = Number.parseFloat(courseSpeedMatch[1]);
-          speed = Number.parseFloat(courseSpeedMatch[2]);
-        }
-
-        // Fallback: Parse speed separately (format: Speed: 10.4 kn or similar)
-        if (!speed) {
-          const speedRegex = /Speed[:\s]+(\d+\.?\d*)\s*(?:kn|knots)/i;
-          const speedMatch = speedRegex.exec(pageText);
-          if (speedMatch) {
-            speed = Number.parseFloat(speedMatch[1]);
+          // Format 3: Latitude: 41.00734 ... Longitude: 2.76506
+          const match3 = /Latitude[:\s]+(-?\d+\.\d+).*?Longitude[:\s]+(-?\d+\.\d+)/is.exec(pageText);
+          if (match3) {
+            return { latitude: Number.parseFloat(match3[1]), longitude: Number.parseFloat(match3[2]) };
           }
-        }
-
-        // Fallback: Parse course separately (format: Course: 218° or COG: 218°)
-        if (!course) {
-          const courseRegex = /(?:Course|COG)[:\s]+(\d+\.?\d*)°?/i;
-          const courseMatch = courseRegex.exec(pageText);
-          if (courseMatch) {
-            course = Number.parseFloat(courseMatch[1]);
+          // Format 4: 41° 0.44' N, 2° 45.90' E (degrees and minutes)
+          const match4 = /(\d+)°\s*(\d+\.?\d*)['′]\s*([NS])[,\s]+(\d+)°\s*(\d+\.?\d*)['′]\s*([EW])/i.exec(pageText);
+          if (match4) {
+            const latDeg = Number.parseFloat(match4[1]);
+            const latMin = Number.parseFloat(match4[2]);
+            const lonDeg = Number.parseFloat(match4[4]);
+            const lonMin = Number.parseFloat(match4[5]);
+            return {
+              latitude: (latDeg + latMin / 60) * (match4[3].toUpperCase() === 'S' ? -1 : 1),
+              longitude: (lonDeg + lonMin / 60) * (match4[6].toUpperCase() === 'W' ? -1 : 1),
+            };
           }
+          return null;
         }
 
-        // Find vessel name from first line or h1 element
-        const firstLineMatch = /^([A-Z][A-Z\s]+)$/m.exec(pageText);
-        if (firstLineMatch) {
-          name = firstLineMatch[1].trim();
-        } else {
+        // Helper: Extract course and speed
+        function extractCourseSpeed(pageText: string): { course: number | null; speed: number | null } {
+          let course: number | null = null;
+          let speed: number | null = null;
+          const courseSpeedMatch = /(\d+\.?\d*)°\s*\/\s*(\d+\.?\d*)\s*kn/i.exec(pageText);
+          if (courseSpeedMatch) {
+            course = Number.parseFloat(courseSpeedMatch[1]);
+            speed = Number.parseFloat(courseSpeedMatch[2]);
+          }
+          if (!speed) {
+            const speedMatch = /Speed[:\s]+(\d+\.?\d*)\s*(?:kn|knots)/i.exec(pageText);
+            if (speedMatch) speed = Number.parseFloat(speedMatch[1]);
+          }
+          if (!course) {
+            const courseMatch = /(?:Course|COG)[:\s]+(\d+\.?\d*)°?/i.exec(pageText);
+            if (courseMatch) course = Number.parseFloat(courseMatch[1]);
+          }
+          return { course, speed };
+        }
+
+        // Helper: Extract vessel name
+        function extractName(pageText: string): string | null {
+          const firstLineMatch = /^([A-Z][A-Z\s]+)$/m.exec(pageText);
+          if (firstLineMatch) return firstLineMatch[1].trim();
           const nameEl = document.querySelector('h1');
           const nameText = nameEl?.textContent?.trim();
           if (nameText && !nameText.toLowerCase().includes('consent')) {
-            name = nameText.split(',')[0].trim();
+            return nameText.split(',')[0].trim();
           }
+          return null;
         }
 
-        // Find destination
-        const destRegex = /Destination[:\s]+([A-Z0-9\s,]+?)(?:\n|$|ETA)/i;
-        const destMatch = destRegex.exec(pageText);
-        if (destMatch) {
-          destination = destMatch[1].trim();
+        // Helper: Extract destination and status
+        function extractDestinationStatus(pageText: string): { destination: string | null; status: string | null } {
+          const destMatch = /Destination[:\s]+([A-Z0-9\s,]+?)(?:\n|$|ETA)/i.exec(pageText);
+          const statusMatch = /(?:Status|Nav\.?\s*Status)[:\s]+([a-z\s]+?)(?:\n|$|Speed)/i.exec(pageText);
+          return {
+            destination: destMatch ? destMatch[1].trim() : null,
+            status: statusMatch ? statusMatch[1].trim() : null,
+          };
         }
 
-        // Find status
-        const statusRegex = /(?:Status|Nav\.?\s*Status)[:\s]+([a-z\s]+?)(?:\n|$|Speed)/i;
-        const statusMatch = statusRegex.exec(pageText);
-        if (statusMatch) {
-          status = statusMatch[1].trim();
-        }
-
-        // Extract a sample of page text for debugging
-        const textSample = pageText.slice(0, 1000);
+        // Main extraction logic
+        const pageText = document.body.innerText;
+        const coords = extractCoordsFromScripts() ?? extractCoordsFromDataAttrs() ?? extractCoordsFromText(pageText);
+        const { course, speed } = extractCourseSpeed(pageText);
+        const name = extractName(pageText);
+        const { destination, status } = extractDestinationStatus(pageText);
 
         return {
-          latitude,
-          longitude,
+          latitude: coords?.latitude ?? null,
+          longitude: coords?.longitude ?? null,
           speed,
           course,
           name,
@@ -308,7 +280,7 @@ export class VesselFinderScraperService {
           status,
           pageTitle: document.title,
           url: window.location.href,
-          textSample,
+          textSample: pageText.slice(0, 1000),
         };
       });
 
@@ -331,7 +303,7 @@ export class VesselFinderScraperService {
         // console.log('Debug screenshot saved to /tmp/vesselfinder-debug.png');
 
         // Save HTML for debugging
-        const fs = await import('fs');
+        const fs = await import('node:fs');
         fs.writeFileSync('/tmp/vesselfinder-debug.html', pageHtml);
         console.log('Debug HTML saved to /tmp/vesselfinder-debug.html');
         return;

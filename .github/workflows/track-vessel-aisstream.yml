@@ -1,4 +1,4 @@
-name: Track Vessel Position
+name: Track Vessel Position (AISStream)
 
 on:
   schedule:
