@@ -1,10 +1,27 @@
 import L from 'leaflet';
+import type { EPositionReportType } from 'shared';
 
 const iconCache = new Map<string, L.DivIcon>();
 
-function buildArrowIcon(cog: number, isCurrent: boolean): L.DivIcon {
+type DataSource = 'AISStream' | 'MyShipTracking';
+
+function getDataSource(positionReportType?: EPositionReportType): DataSource {
+  if (positionReportType === 'MyShipTrackingScrape') {
+    return 'MyShipTracking';
+  }
+  return 'AISStream';
+}
+
+function getColor(source: DataSource, isCurrent: boolean): string {
+  if (source === 'MyShipTracking') {
+    return isCurrent ? '#27ae60' : '#2ecc71'; // Green tones
+  }
+  return isCurrent ? '#ff6b35' : '#00b4d8'; // Blue/Orange tones
+}
+
+function buildArrowIcon(cog: number, isCurrent: boolean, source: DataSource): L.DivIcon {
   const size = isCurrent ? 32 : 24;
-  const color = isCurrent ? '#ff6b35' : '#00b4d8';
+  const color = getColor(source, isCurrent);
 
   return new L.DivIcon({
     className: isCurrent ? 'current-marker' : 'ship-marker',
@@ -29,16 +46,44 @@ function buildArrowIcon(cog: number, isCurrent: boolean): L.DivIcon {
   });
 }
 
-export function createArrowIcon(cog = 0, isCurrent = false): L.DivIcon {
-  const key = `${cog}-${isCurrent}`;
+function buildCircleIcon(isCurrent: boolean, source: DataSource): L.DivIcon {
+  const size = isCurrent ? 24 : 16;
+  const color = getColor(source, isCurrent);
+
+  return new L.DivIcon({
+    className: isCurrent ? 'current-marker' : 'ship-marker',
+    html: `<div style="
+      width: ${size}px;
+      height: ${size}px;
+      ${isCurrent ? 'animation: pulse 2s infinite;' : ''}
+    ">
+      <svg viewBox="0 0 24 24" width="${size}" height="${size}">
+        <circle
+          cx="12"
+          cy="12"
+          r="10"
+          fill="${color}"
+          stroke="white"
+          stroke-width="2"
+        />
+      </svg>
+    </div>`,
+    iconSize: [size, size],
+    iconAnchor: [size / 2, size / 2],
+    popupAnchor: [0, -size / 2],
+  });
+}
+
+export function createMarkerIcon(cog: number | undefined, isCurrent: boolean, positionReportType?: EPositionReportType): L.DivIcon {
+  const source = getDataSource(positionReportType);
+  const hasCog = cog !== undefined;
+  const key = hasCog ? `arrow-${cog}-${isCurrent}-${source}` : `circle-${isCurrent}-${source}`;
   const cached = iconCache.get(key);
   if (cached) {
     return cached;
   }
-  const icon = buildArrowIcon(cog, isCurrent);
+  const icon = hasCog ? buildArrowIcon(cog, isCurrent, source) : buildCircleIcon(isCurrent, source);
   iconCache.set(key, icon);
   return icon;
 }
 
-export const defaultIcon = createArrowIcon(0, false);
-export const defaultCurrentIcon = createArrowIcon(0, true);

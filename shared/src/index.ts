@@ -1,5 +1,6 @@
 export type { IPosition } from './interfaces/IPosition';
 export { EPositionReportType } from './enums/EPositionReportType';
+export { EDataSource } from './enums/EDataSource';
 export type { IVesselData } from './interfaces/IVesselData';
 export type { IAISMetaData } from './interfaces/IAISMetaData';
 export type { IPositionReport } from './interfaces/IPositionReport';
