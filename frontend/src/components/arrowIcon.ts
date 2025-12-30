@@ -13,10 +13,13 @@ function getDataSource(positionReportType?: EPositionReportType): DataSource {
 }
 
 function getColor(source: DataSource, isCurrent: boolean): string {
-  if (source === 'MyShipTracking') {
-    return isCurrent ? '#27ae60' : '#2ecc71'; // Green tones
+  if (isCurrent) {
+    return '#e74c3c'; // Red for current position
   }
-  return isCurrent ? '#ff6b35' : '#00b4d8'; // Blue/Orange tones
+  if (source === 'MyShipTracking') {
+    return '#2ecc71'; // Green
+  }
+  return '#00b4d8'; // Blue
 }
 
 function buildArrowIcon(cog: number, isCurrent: boolean, source: DataSource): L.DivIcon {
