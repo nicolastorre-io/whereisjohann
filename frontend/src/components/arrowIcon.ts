@@ -15,7 +15,7 @@ function buildArrowIcon(cog: number, isCurrent: boolean): L.DivIcon {
     ">
       <svg viewBox="0 0 24 24" width="${size}" height="${size}" style="transform: rotate(${cog}deg);">
         <path
-          d="M12 2 L20 20 L12 16 L4 20 Z"
+          d="M12 2 L20 22 L4 22 Z"
           fill="${color}"
           stroke="white"
           stroke-width="1.5"
