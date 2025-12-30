@@ -1,28 +1,26 @@
 import L from 'leaflet';
-import type { EPositionReportType } from 'shared';
+import { EPositionReportType, EDataSource } from 'shared';
 
 const iconCache = new Map<string, L.DivIcon>();
 
-type DataSource = 'AISStream' | 'MyShipTracking';
-
-function getDataSource(positionReportType?: EPositionReportType): DataSource {
-  if (positionReportType === 'MyShipTrackingScrape') {
-    return 'MyShipTracking';
+function getDataSource(positionReportType?: EPositionReportType): EDataSource {
+  if (positionReportType === EPositionReportType.MyShipTrackingScrape) {
+    return EDataSource.MyShipTracking;
   }
-  return 'AISStream';
+  return EDataSource.AISStream;
 }
 
-function getColor(source: DataSource, isCurrent: boolean): string {
+function getColor(source: EDataSource, isCurrent: boolean): string {
   if (isCurrent) {
     return '#e74c3c'; // Red for current position
   }
-  if (source === 'MyShipTracking') {
+  if (source === EDataSource.MyShipTracking) {
     return '#2ecc71'; // Green
   }
   return '#00b4d8'; // Blue
 }
 
-function buildArrowIcon(cog: number, isCurrent: boolean, source: DataSource): L.DivIcon {
+function buildArrowIcon(cog: number, isCurrent: boolean, source: EDataSource): L.DivIcon {
   const size = isCurrent ? 32 : 24;
   const color = getColor(source, isCurrent);
 
@@ -49,7 +47,7 @@ function buildArrowIcon(cog: number, isCurrent: boolean, source: DataSource): L.
   });
 }
 
-function buildCircleIcon(isCurrent: boolean, source: DataSource): L.DivIcon {
+function buildCircleIcon(isCurrent: boolean, source: EDataSource): L.DivIcon {
   const size = isCurrent ? 24 : 16;
   const color = getColor(source, isCurrent);
 
