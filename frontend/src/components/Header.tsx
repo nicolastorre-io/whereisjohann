@@ -10,6 +10,7 @@ export default function Header() {
         Positions are collected via AIS (Automatic Identification System), a network of terrestrial
         stations with ~200km coastal range. Coverage may have gaps far offshore.
         Data provided by <a href="https://aisstream.io/coverage" target="_blank" rel="noopener noreferrer">AISStream.io</a>.
+        View the source on <a href="https://github.com/nicolastorre-io/whereisjohann" target="_blank" rel="noopener noreferrer">GitHub</a>.
       </p>
     </div>
   );
