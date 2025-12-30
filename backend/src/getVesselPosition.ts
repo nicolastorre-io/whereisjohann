@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 import { fileURLToPath } from 'url';
+import { etaToTimestamp } from 'shared';
 import type { VesselData, AISMessage, Position, ShipStaticData, ShipInfo } from 'shared';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -41,6 +42,7 @@ function getVesselPosition(): void {
     console.log(`  Name:        ${positionData.name}`);
     console.log(`  CallSign:    ${positionData.callSign}`);
     console.log(`  Destination: ${positionData.destination}`);
+    console.log(`  ETA:         ${positionData.eta ? new Date(positionData.eta).toISOString() : 'N/A'}`);
     console.log(`  Latitude:    ${positionData.latitude}`);
     console.log(`  Longitude:   ${positionData.longitude}`);
     console.log(`  COG:         ${positionData.cog}`);
@@ -102,17 +104,20 @@ function getVesselPosition(): void {
         name: staticData.Name?.trim(),
         callSign: staticData.CallSign?.trim(),
         destination: staticData.Destination?.trim(),
+        eta: staticData.Eta ? etaToTimestamp(staticData.Eta) : undefined,
       };
       console.log(`\nShip Static Data received:`);
       console.log(`  Name:        ${shipInfo.name}`);
       console.log(`  CallSign:    ${shipInfo.callSign}`);
       console.log(`  Destination: ${shipInfo.destination}`);
+      console.log(`  ETA:         ${shipInfo.eta ? new Date(shipInfo.eta).toISOString() : 'N/A'}`);
 
       // If we already have position data, update it with ship info and save
       if (positionData) {
         positionData.name = shipInfo.name || positionData.name;
         positionData.callSign = shipInfo.callSign;
         positionData.destination = shipInfo.destination;
+        positionData.eta = shipInfo.eta;
         saveAndExit();
       }
       return;
@@ -141,6 +146,7 @@ function getVesselPosition(): void {
         name: shipInfo.name || ShipName?.trim(),
         callSign: shipInfo.callSign,
         destination: shipInfo.destination,
+        eta: shipInfo.eta,
       };
 
       console.log(`\nPosition received (${messageType}):`);

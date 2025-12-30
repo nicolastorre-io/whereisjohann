@@ -11,4 +11,5 @@ export interface Position {
   name?: string;
   callSign?: string;
   destination?: string;
+  eta?: number;
 }

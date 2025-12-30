@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import StatsBar from '../components/StatsBar';
 import VesselMap from '../components/VesselMap';
 import type { VesselData } from 'shared';
-import { formatDate } from '../utils/date';
+import { formatDate } from 'shared';
 
 export default function HomePage() {
   const [data, setData] = useState<VesselData | null>(null);

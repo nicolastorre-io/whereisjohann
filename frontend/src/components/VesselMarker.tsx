@@ -1,9 +1,7 @@
 import { useMemo } from 'react';
 import { Marker, Popup } from 'react-leaflet';
 import type { Position } from 'shared';
-import { formatDate } from '../utils/date';
-import { getNavigationalStatus } from '../utils/navigationalStatus';
-import { knotsToKmh } from '../utils/speed';
+import { formatDate, formatEta, getNavigationalStatus, knotsToKmh } from 'shared';
 import { createArrowIcon, defaultIcon, defaultCurrentIcon } from './arrowIcon';
 
 interface VesselMarkerProps {
@@ -75,6 +73,12 @@ export default function VesselMarker({ position, index, isFirst, isLast }: Vesse
                 {position.destination}
               </a>
             </span>
+          </div>
+        )}
+        {position.eta && (
+          <div className="popup-row">
+            <span className="label">Time of arrival</span>
+            <span className="value">{formatEta(position.eta)}</span>
           </div>
         )}
         <div className="popup-row">
