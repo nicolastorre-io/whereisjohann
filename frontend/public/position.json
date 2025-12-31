@@ -328,6 +328,19 @@
       "sog": 10.6,
       "positionReportType": "MyShipTrackingScrape",
       "name": "MSC MAGNIFICA"
+    },
+    {
+      "id": "0846a85b-41d8-4719-94f1-1c93e1273205",
+      "mmsi": 352594000,
+      "latitude": 38.30531,
+      "longitude": -0.37171,
+      "positionTimeMetaData": "2025-12-31T18:33:00Z",
+      "cog": 85.2,
+      "sog": 10.1,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA",
+      "destination": "ESVLC",
+      "eta": 1767248040000
     }
   ]
 }
