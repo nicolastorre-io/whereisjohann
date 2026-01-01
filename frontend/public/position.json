@@ -419,6 +419,18 @@
       "name": "MSC MAGNIFICA",
       "destination": "ESVLC",
       "eta": 1767248700000
+    },
+    {
+      "id": "9dae57b0-8402-4d02-9052-efc22ab3dd2a",
+      "mmsi": 352594000,
+      "latitude": 39.337970000000006,
+      "longitude": 0.15345666666666666,
+      "positionTimeMetaData": "2026-01-01 04:14:09.323546319 +0000 UTC",
+      "cog": 296.2,
+      "sog": 12.2,
+      "navigationalStatus": 5,
+      "positionReportType": "AISStreamPositionReport",
+      "name": "MSC MAGNIFICA"
     }
   ]
 }
