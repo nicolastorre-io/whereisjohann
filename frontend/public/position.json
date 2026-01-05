@@ -2147,6 +2147,18 @@
       "name": "MSC MAGNIFICA",
       "destination": "FRMRS",
       "eta": 1767676560000
+    },
+    {
+      "id": "759c5a55-7803-4e5e-83e9-bf31062e27f4",
+      "mmsi": 352594000,
+      "latitude": 43.758023333333334,
+      "longitude": 8.385345,
+      "positionTimeMetaData": "2026-01-05 20:33:29.776221207 +0000 UTC",
+      "cog": 225.7,
+      "sog": 19.5,
+      "navigationalStatus": 0,
+      "positionReportType": "AISStreamPositionReport",
+      "name": "MSC MAGNIFICA"
     }
   ]
 }
