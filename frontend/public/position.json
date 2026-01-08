@@ -722,6 +722,19 @@
       "name": "MSC MAGNIFICA",
       "destination": "PTFNC",
       "eta": 1768028400000
+    },
+    {
+      "id": "b9ad97c6-7a94-42a9-9a74-407d67803e20",
+      "mmsi": 352594000,
+      "latitude": 37.36667,
+      "longitude": -0.45403,
+      "positionTimeMetaData": "2026-01-08T07:34:00Z",
+      "cog": 233.2,
+      "sog": 18.6,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA",
+      "destination": "PTFNC",
+      "eta": 1768028400000
     }
   ]
 }
