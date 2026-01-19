@@ -3484,6 +3484,19 @@
       "name": "MSC MAGNIFICA",
       "destination": "CWWIL",
       "eta": 1768816800000
+    },
+    {
+      "id": "b2b2f213-31de-4992-8550-ae3785ba405c",
+      "mmsi": 352594000,
+      "latitude": 11.90834,
+      "longitude": -68.64868,
+      "positionTimeMetaData": "2026-01-19T07:48:00Z",
+      "cog": 276.4,
+      "sog": 12.4,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA",
+      "destination": "CWWIL",
+      "eta": 1768816800000
     }
   ]
 }
