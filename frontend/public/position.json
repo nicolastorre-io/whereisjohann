@@ -4564,6 +4564,19 @@
       "name": "MSC MAGNIFICA",
       "destination": "CRLIO",
       "eta": 1769172540000
+    },
+    {
+      "id": "b24543e3-ae5a-42d5-8f24-d39447c05210",
+      "mmsi": 352594000,
+      "latitude": 10.21449,
+      "longitude": -76.04488,
+      "positionTimeMetaData": "2026-01-22T03:41:00Z",
+      "cog": 268.7,
+      "sog": 12.6,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA",
+      "destination": "CRLIO",
+      "eta": 1769172540000
     }
   ]
 }
