@@ -4955,6 +4955,17 @@
       "navigationalStatus": 0,
       "positionReportType": "AISStreamPositionReport",
       "name": "MSC MAGNIFICA"
+    },
+    {
+      "id": "1beb89cb-99d2-4407-8b63-b5dfb1bb451b",
+      "mmsi": 352594000,
+      "latitude": 9.28431,
+      "longitude": -79.91432,
+      "positionTimeMetaData": "2026-01-24T13:43:00Z",
+      "cog": 170,
+      "sog": 15,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA"
     }
   ]
 }
