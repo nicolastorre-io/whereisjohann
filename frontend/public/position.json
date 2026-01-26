@@ -5563,6 +5563,17 @@
       "name": "MSC MAGNIFICA",
       "destination": "CRPAS",
       "eta": 1769434560000
+    },
+    {
+      "id": "3442417a-59e0-4a54-8344-58b9505f961b",
+      "mmsi": 352594000,
+      "latitude": 9.96969,
+      "longitude": -84.83021,
+      "positionTimeMetaData": "2026-01-26T13:58:00Z",
+      "cog": 170,
+      "sog": 12.7,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA"
     }
   ]
 }
