@@ -6657,6 +6657,18 @@
       "name": "MSC MAGNIFICA",
       "destination": "MXPVR",
       "eta": 1769774520000
+    },
+    {
+      "id": "ab44ebfa-0391-4237-8eb2-eed5ba941839",
+      "mmsi": 352594000,
+      "latitude": 20.65779,
+      "longitude": -105.24353166666667,
+      "positionTimeMetaData": "2026-01-30 13:11:27.243551369 +0000 UTC",
+      "cog": 63.4,
+      "sog": 0,
+      "navigationalStatus": 5,
+      "positionReportType": "AISStreamPositionReport",
+      "name": "MSC MAGNIFICA"
     }
   ]
 }
