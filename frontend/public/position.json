@@ -6818,6 +6818,17 @@
       "name": "MSC MAGNIFICA",
       "destination": "MXCSL",
       "eta": 1769869800000
+    },
+    {
+      "id": "9edd0fea-742f-42b3-8015-85d234de5a4d",
+      "mmsi": 352594000,
+      "latitude": 20.63809,
+      "longitude": -105.34942,
+      "positionTimeMetaData": "2026-01-30T23:43:00Z",
+      "cog": 266.4,
+      "sog": 15.7,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA"
     }
   ]
 }
