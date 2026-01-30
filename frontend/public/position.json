@@ -6541,6 +6541,19 @@
       "name": "MSC MAGNIFICA",
       "destination": "MXPVR",
       "eta": 1769773980000
+    },
+    {
+      "id": "17cc1520-aa3a-4e74-8f54-5f0d02668c87",
+      "mmsi": 352594000,
+      "latitude": 19.7918,
+      "longitude": -105.69797,
+      "positionTimeMetaData": "2026-01-30T07:37:00Z",
+      "cog": 331.9,
+      "sog": 19,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA",
+      "destination": "MXPVR",
+      "eta": 1769774100000
     }
   ]
 }
