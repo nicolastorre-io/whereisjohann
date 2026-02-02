@@ -7338,6 +7338,19 @@
       "sog": 19.8,
       "positionReportType": "MyShipTrackingScrape",
       "name": "MSC MAGNIFICA"
+    },
+    {
+      "id": "7508e563-c65e-4754-af26-1e2f64c21371",
+      "mmsi": 352594000,
+      "latitude": 30.60475,
+      "longitude": -116.74186,
+      "positionTimeMetaData": "2026-02-02T06:38:00Z",
+      "cog": 343.2,
+      "sog": 19.7,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA",
+      "destination": "USSAN",
+      "eta": 1770040800000
     }
   ]
 }
