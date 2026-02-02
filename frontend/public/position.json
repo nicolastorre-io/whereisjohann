@@ -7351,6 +7351,21 @@
       "name": "MSC MAGNIFICA",
       "destination": "USSAN",
       "eta": 1770040800000
+    },
+    {
+      "id": "99b82b8f-526c-4f19-b55b-c8b83ae9863f",
+      "mmsi": 352594000,
+      "latitude": 30.775265,
+      "longitude": -116.79994333333335,
+      "positionTimeMetaData": "2026-02-02 07:12:51.855050702 +0000 UTC",
+      "shipTimeMetaData": "2026-02-02 07:13:19.200505296 +0000 UTC",
+      "cog": 342.5,
+      "sog": 18.4,
+      "navigationalStatus": 0,
+      "positionReportType": "AISStreamPositionReport",
+      "name": "MSC MAGNIFICA",
+      "destination": "USSAN",
+      "eta": 1770040800000
     }
   ]
 }
