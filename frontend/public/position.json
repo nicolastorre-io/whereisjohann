@@ -8251,6 +8251,19 @@
       "name": "MSC MAGNIFICA",
       "destination": "USLAX",
       "eta": 1770273240000
+    },
+    {
+      "id": "cd2e239b-67d7-4f23-a270-08977ea98727",
+      "mmsi": 352594000,
+      "latitude": 32.80851,
+      "longitude": -119.90607,
+      "positionTimeMetaData": "2026-02-04T15:36:00Z",
+      "cog": 303.3,
+      "sog": 13.6,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA",
+      "destination": "USLAX",
+      "eta": 1770273240000
     }
   ]
 }
