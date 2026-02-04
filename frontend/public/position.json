@@ -7978,6 +7978,21 @@
       "navigationalStatus": 0,
       "positionReportType": "AISStreamPositionReport",
       "name": "MSC MAGNIFICA"
+    },
+    {
+      "id": "5b1752c1-1cca-49b8-a0af-ee252e8a9e04",
+      "mmsi": 352594000,
+      "latitude": 32.481065,
+      "longitude": -117.491305,
+      "positionTimeMetaData": "2026-02-04 05:55:40.893884104 +0000 UTC",
+      "shipTimeMetaData": "2026-02-04 05:56:09.858672375 +0000 UTC",
+      "cog": 255.8,
+      "sog": 14,
+      "navigationalStatus": 0,
+      "positionReportType": "AISStreamPositionReport",
+      "name": "MSC MAGNIFICA",
+      "destination": "USLAX",
+      "eta": 1770301800000
     }
   ]
 }
