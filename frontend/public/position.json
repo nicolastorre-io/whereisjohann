@@ -9158,6 +9158,19 @@
       "name": "MSC MAGNIFICA",
       "destination": "USITO",
       "eta": 1770768000000
+    },
+    {
+      "id": "ec7950ef-f825-45a4-88ec-bb7b3f0b5fd1",
+      "mmsi": 352594000,
+      "latitude": 34.37102,
+      "longitude": -121.92778,
+      "positionTimeMetaData": "2026-02-07T08:50:00Z",
+      "cog": 245.6,
+      "sog": 17.5,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA",
+      "destination": "USITO",
+      "eta": 1770768000000
     }
   ]
 }
