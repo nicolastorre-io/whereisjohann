@@ -11682,6 +11682,21 @@
       "sog": 9.8,
       "positionReportType": "MyShipTrackingScrape",
       "name": "MSC MAGNIFICA"
+    },
+    {
+      "id": "fb03a62f-dc50-4593-a5f1-5860ad94a1b8",
+      "mmsi": 352594000,
+      "latitude": -13.825128333333334,
+      "longitude": -171.76244,
+      "positionTimeMetaData": "2026-02-18 21:45:40.849692155 +0000 UTC",
+      "shipTimeMetaData": "2026-02-18 21:45:17.426477289 +0000 UTC",
+      "cog": 326.4,
+      "sog": 0,
+      "navigationalStatus": 5,
+      "positionReportType": "AISStreamPositionReport",
+      "name": "MSC MAGNIFICA",
+      "destination": "WSAPW",
+      "eta": 1771531200000
     }
   ]
 }
