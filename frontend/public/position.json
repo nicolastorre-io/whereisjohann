@@ -11671,6 +11671,17 @@
       "name": "MSC MAGNIFICA",
       "destination": "WSAPW",
       "eta": 1771531200000
+    },
+    {
+      "id": "f9422ebc-b061-4374-b9b6-aeeabc7161b2",
+      "mmsi": 352594000,
+      "latitude": -13.82512,
+      "longitude": -171.76244,
+      "positionTimeMetaData": "2026-02-18T21:05:00Z",
+      "cog": 353,
+      "sog": 9.8,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA"
     }
   ]
 }
