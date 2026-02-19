@@ -11777,6 +11777,21 @@
       "sog": 9.8,
       "positionReportType": "MyShipTrackingScrape",
       "name": "MSC MAGNIFICA"
+    },
+    {
+      "id": "f975d3ac-d3f6-44ed-b2ea-d532395f0659",
+      "mmsi": 352594000,
+      "latitude": -13.82513,
+      "longitude": -171.76242666666667,
+      "positionTimeMetaData": "2026-02-19 05:00:10.965389656 +0000 UTC",
+      "shipTimeMetaData": "2026-02-19 04:59:20.541126808 +0000 UTC",
+      "cog": 94.5,
+      "sog": 0,
+      "navigationalStatus": 5,
+      "positionReportType": "AISStreamPositionReport",
+      "name": "MSC MAGNIFICA",
+      "destination": "FJSUV",
+      "eta": 1771614000000
     }
   ]
 }
