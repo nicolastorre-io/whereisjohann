@@ -12940,6 +12940,21 @@
       "sog": 16.3,
       "positionReportType": "MyShipTrackingScrape",
       "name": "MSC MAGNIFICA"
+    },
+    {
+      "id": "1e9e9d82-4e62-4d7a-b1d8-d87859789122",
+      "mmsi": 352594000,
+      "latitude": -36.84241333333333,
+      "longitude": 174.76835166666666,
+      "positionTimeMetaData": "2026-02-23 21:54:52.463933666 +0000 UTC",
+      "shipTimeMetaData": "2026-02-23 21:55:34.983611187 +0000 UTC",
+      "cog": 20.5,
+      "sog": 0,
+      "navigationalStatus": 0,
+      "positionReportType": "AISStreamPositionReport",
+      "name": "MSC MAGNIFICA",
+      "destination": "NZAKL",
+      "eta": 1771871400000
     }
   ]
 }
