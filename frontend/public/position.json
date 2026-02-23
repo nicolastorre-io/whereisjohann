@@ -12853,6 +12853,18 @@
       "name": "MSC MAGNIFICA",
       "destination": "NZAKL",
       "eta": 1771869720000
+    },
+    {
+      "id": "31e2ea5b-7e27-4d70-9e77-439a9458e2dd",
+      "mmsi": 352594000,
+      "latitude": -36.34730666666667,
+      "longitude": 174.98220833333335,
+      "positionTimeMetaData": "2026-02-23 15:55:56.291813257 +0000 UTC",
+      "cog": 162.6,
+      "sog": 10.4,
+      "navigationalStatus": 0,
+      "positionReportType": "AISStreamPositionReport",
+      "name": "MSC MAGNIFICA"
     }
   ]
 }
