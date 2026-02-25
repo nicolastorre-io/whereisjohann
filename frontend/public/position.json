@@ -13587,6 +13587,19 @@
       "navigationalStatus": 0,
       "positionReportType": "AISStreamPositionReport",
       "name": "MSC MAGNIFICA"
+    },
+    {
+      "id": "3fce660a-d0f5-4a96-b919-7e2f0986158e",
+      "mmsi": 352594000,
+      "latitude": -37.05957,
+      "longitude": 177.52284,
+      "positionTimeMetaData": "2026-02-25T17:36:00Z",
+      "cog": 110.1,
+      "sog": 13.4,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA",
+      "destination": "NZWLG",
+      "eta": 1772118180000
     }
   ]
 }
