@@ -13834,6 +13834,19 @@
       "name": "MSC MAGNIFICA",
       "destination": "NZWLG",
       "eta": 1772133000000
+    },
+    {
+      "id": "663a57a8-5abb-4f03-b542-4aee0da6a6c6",
+      "mmsi": 352594000,
+      "latitude": -38.26929,
+      "longitude": 178.73359,
+      "positionTimeMetaData": "2026-02-25T23:53:00Z",
+      "cog": 195.3,
+      "sog": 16,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA",
+      "destination": "NZWLG",
+      "eta": 1772132640000
     }
   ]
 }
