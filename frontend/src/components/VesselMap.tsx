@@ -30,8 +30,9 @@ export default function VesselMap({ positions }: Readonly<VesselMapProps>) {
         maxBoundsViscosity={1.0}
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+          attribution='&copy; OpenStreetMap'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          noWrap
         />
         <MapController positions={coords} />
 
