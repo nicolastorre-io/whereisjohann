@@ -10,11 +10,38 @@ interface VesselMapProps {
   positions: IPosition[];
 }
 
+// --- NEW: split polyline when crossing the dateline ---
+function splitAtDateLine(coords: LatLngTuple[]): LatLngTuple[][] {
+  if (coords.length < 2) return [coords];
+
+  const segments: LatLngTuple[][] = [[coords[0]]];
+
+  for (let i = 1; i < coords.length; i++) {
+    const [lat, lng] = coords[i];
+    const [, prevLng] = coords[i - 1];
+
+    if (Math.abs(lng - prevLng) > 180) {
+      // dateline crossed → start new segment
+      segments.push([[lat, lng]]);
+    } else {
+      segments[segments.length - 1].push([lat, lng]);
+    }
+  }
+
+  return segments;
+}
+
 export default function VesselMap({ positions }: Readonly<VesselMapProps>) {
   const coords = useMemo<LatLngTuple[]>(
     () => positions.map((p) => [p.latitude, p.longitude]),
     [positions]
   );
+
+  const polylineSegments = useMemo(
+    () => splitAtDateLine(coords),
+    [coords]
+  );
+
   const lastPosition = useMemo(() => positions.at(-1)!, [positions]);
 
   return (
@@ -23,26 +50,25 @@ export default function VesselMap({ positions }: Readonly<VesselMapProps>) {
         center={[lastPosition.latitude, lastPosition.longitude]}
         zoom={6}
         className="map-container"
-        maxBounds={[
-          [-90, -180],
-          [90, 180],
-        ]}
-        maxBoundsViscosity={1.0}
       >
         <TileLayer
-          attribution='&copy; OpenStreetMap'
+          attribution="&copy; OpenStreetMap"
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          noWrap
         />
+
         <MapController positions={coords} />
 
-        <Polyline
-          positions={coords}
-          color="#00b4d8"
-          weight={3}
-          opacity={0.7}
-          dashArray="10, 5"
-        />
+        {/* --- UPDATED: render multiple polyline segments --- */}
+        {polylineSegments.map((segment, index) => (
+          <Polyline
+            key={index}
+            positions={segment}
+            color="#00b4d8"
+            weight={3}
+            opacity={0.7}
+            dashArray="10, 5"
+          />
+        ))}
 
         {positions.map((pos, index) => (
           <VesselMarker
