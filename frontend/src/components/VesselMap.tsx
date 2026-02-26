@@ -23,6 +23,11 @@ export default function VesselMap({ positions }: Readonly<VesselMapProps>) {
         center={[lastPosition.latitude, lastPosition.longitude]}
         zoom={6}
         className="map-container"
+        maxBounds={[
+          [-90, -180],
+          [90, 180],
+        ]}
+        maxBoundsViscosity={1.0}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
