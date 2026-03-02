@@ -15059,6 +15059,18 @@
       "name": "MSC MAGNIFICA",
       "destination": "AUSYD",
       "eta": 1772479260000
+    },
+    {
+      "id": "398e1ae2-2898-4881-a5e6-fd1b415fa380",
+      "mmsi": 352594000,
+      "latitude": -33.87139333333333,
+      "longitude": 151.44756333333333,
+      "positionTimeMetaData": "2026-03-02 16:58:47.651751768 +0000 UTC",
+      "cog": 302.3,
+      "sog": 6.1,
+      "navigationalStatus": 0,
+      "positionReportType": "AISStreamPositionReport",
+      "name": "MSC MAGNIFICA"
     }
   ]
 }
