@@ -16519,6 +16519,17 @@
       "name": "MSC MAGNIFICA",
       "destination": "AUTSV",
       "eta": 1772916720000
+    },
+    {
+      "id": "65fa4453-d18c-46ac-9954-384c769300f1",
+      "mmsi": 352594000,
+      "latitude": -19.24964,
+      "longitude": 146.83144,
+      "positionTimeMetaData": "2026-03-07T21:42:00Z",
+      "cog": 20,
+      "sog": 14.4,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA"
     }
   ]
 }
