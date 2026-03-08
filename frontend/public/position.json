@@ -16871,6 +16871,17 @@
       "name": "MSC MAGNIFICA",
       "destination": "AUCNS",
       "eta": 1772996400000
+    },
+    {
+      "id": "d5168786-360f-4178-a8df-70f726315ed4",
+      "mmsi": 352594000,
+      "latitude": -16.77258,
+      "longitude": 145.74454,
+      "positionTimeMetaData": "2026-03-08T23:47:00Z",
+      "cog": 313,
+      "sog": 11,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA"
     }
   ]
 }
