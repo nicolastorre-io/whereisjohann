@@ -20102,6 +20102,17 @@
       "name": "MSC MAGNIFICA",
       "destination": "JPTYO R",
       "eta": 1774206600000
+    },
+    {
+      "id": "70e402bc-5049-416e-8812-1719c2933b1e",
+      "mmsi": 352594000,
+      "latitude": 35.61601,
+      "longitude": 139.77146,
+      "positionTimeMetaData": "2026-03-23T17:26:00Z",
+      "cog": 147,
+      "sog": 13.3,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA"
     }
   ]
 }
