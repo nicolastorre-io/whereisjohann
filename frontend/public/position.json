@@ -22548,6 +22548,17 @@
       "name": "MSC MAGNIFICA",
       "destination": "SGSIN",
       "eta": 1775430000000
+    },
+    {
+      "id": "dea296d3-9d8d-492d-bfc1-535d4d7a94e4",
+      "mmsi": 352594000,
+      "latitude": 1.26458,
+      "longitude": 103.86068,
+      "positionTimeMetaData": "2026-04-05T23:59:00Z",
+      "cog": 144,
+      "sog": 15.7,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA"
     }
   ]
 }
