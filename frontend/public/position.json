@@ -22533,6 +22533,21 @@
       "name": "MSC MAGNIFICA",
       "destination": "SGSIN",
       "eta": 1775430840000
+    },
+    {
+      "id": "ae41180e-bfcd-4598-b44a-4a4348d19e44",
+      "mmsi": 352594000,
+      "latitude": 1.25853,
+      "longitude": 103.85812,
+      "positionTimeMetaData": "2026-04-05 23:40:26.716436937 +0000 UTC",
+      "shipTimeMetaData": "2026-04-05 23:53:21.055991642 +0000 UTC",
+      "cog": 0.5,
+      "sog": 3.4,
+      "navigationalStatus": 0,
+      "positionReportType": "AISStreamPositionReport",
+      "name": "MSC MAGNIFICA",
+      "destination": "SGSIN",
+      "eta": 1775430000000
     }
   ]
 }
