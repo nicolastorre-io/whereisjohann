@@ -22697,6 +22697,19 @@
       "name": "MSC MAGNIFICA",
       "destination": "MYPKG",
       "eta": 1775512740000
+    },
+    {
+      "id": "b060e9c8-4de2-4e91-8263-56fbf8bccc8d",
+      "mmsi": 352594000,
+      "latitude": 1.9387,
+      "longitude": 102.28721,
+      "positionTimeMetaData": "2026-04-06T17:26:00Z",
+      "cog": 295.1,
+      "sog": 18.5,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA",
+      "destination": "MYPKG",
+      "eta": 1775513100000
     }
   ]
 }
