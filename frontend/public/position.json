@@ -25127,6 +25127,21 @@
       "sog": 16.8,
       "positionReportType": "MyShipTrackingScrape",
       "name": "MSC MAGNIFICA"
+    },
+    {
+      "id": "b4a0298b-9014-4fdd-b947-d5ec82edfcad",
+      "mmsi": 352594000,
+      "latitude": -20.1563,
+      "longitude": 57.49351,
+      "positionTimeMetaData": "2026-04-18 23:45:47.518268906 +0000 UTC",
+      "shipTimeMetaData": "2026-04-18 23:45:50.553979421 +0000 UTC",
+      "cog": 262.4,
+      "sog": 0,
+      "navigationalStatus": 5,
+      "positionReportType": "AISStreamPositionReport",
+      "name": "MSC MAGNIFICA",
+      "destination": "MUPLU",
+      "eta": 1776481200000
     }
   ]
 }
