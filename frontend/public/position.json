@@ -25116,6 +25116,17 @@
       "name": "MSC MAGNIFICA",
       "destination": "MUPLU",
       "eta": 1776481200000
+    },
+    {
+      "id": "9babfc6c-e1a8-484d-9da1-623d81b4f82f",
+      "mmsi": 352594000,
+      "latitude": -20.1563,
+      "longitude": 57.49351,
+      "positionTimeMetaData": "2026-04-18T23:04:00Z",
+      "cog": 120,
+      "sog": 16.8,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA"
     }
   ]
 }
