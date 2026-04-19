@@ -25264,6 +25264,21 @@
       "sog": 16.8,
       "positionReportType": "MyShipTrackingScrape",
       "name": "MSC MAGNIFICA"
+    },
+    {
+      "id": "c7bfe91e-4ad6-4da7-932f-39d99eb7a04a",
+      "mmsi": 352594000,
+      "latitude": -20.15631,
+      "longitude": 57.49351,
+      "positionTimeMetaData": "2026-04-19 11:41:22.467230572 +0000 UTC",
+      "shipTimeMetaData": "2026-04-19 11:41:21.410239745 +0000 UTC",
+      "cog": 356,
+      "sog": 0,
+      "navigationalStatus": 5,
+      "positionReportType": "AISStreamPositionReport",
+      "name": "MSC MAGNIFICA",
+      "destination": "REPOS",
+      "eta": 1776650400000
     }
   ]
 }
