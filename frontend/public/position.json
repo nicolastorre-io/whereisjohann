@@ -25194,6 +25194,17 @@
       "name": "MSC MAGNIFICA",
       "destination": "REPOS",
       "eta": 1776650400000
+    },
+    {
+      "id": "adc13108-046d-41e5-83c1-4b34247faaa7",
+      "mmsi": 352594000,
+      "latitude": -20.1563,
+      "longitude": 57.49351,
+      "positionTimeMetaData": "2026-04-19T06:15:00Z",
+      "cog": 120,
+      "sog": 16.8,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA"
     }
   ]
 }
