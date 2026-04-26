@@ -26599,6 +26599,21 @@
       "sog": 15.7,
       "positionReportType": "MyShipTrackingScrape",
       "name": "MSC MAGNIFICA"
+    },
+    {
+      "id": "9fa1012f-b484-4e44-a47c-ae016a223113",
+      "mmsi": 352594000,
+      "latitude": -33.91003,
+      "longitude": 18.42638,
+      "positionTimeMetaData": "2026-04-26 19:07:36.960027522 +0000 UTC",
+      "shipTimeMetaData": "2026-04-26 19:13:55.826733308 +0000 UTC",
+      "cog": 202.4,
+      "sog": 0,
+      "navigationalStatus": 5,
+      "positionReportType": "AISStreamPositionReport",
+      "name": "MSC MAGNIFICA",
+      "destination": "ZACPT",
+      "eta": 1777174200000
     }
   ]
 }
