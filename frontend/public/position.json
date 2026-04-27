@@ -26917,6 +26917,19 @@
       "name": "MSC MAGNIFICA",
       "destination": "NAWVB",
       "eta": 1777516200000
+    },
+    {
+      "id": "a372c5ed-5c9e-406a-9db5-1207e51c915e",
+      "mmsi": 352594000,
+      "latitude": -33.91003,
+      "longitude": 18.42639,
+      "positionTimeMetaData": "2026-04-27T09:52:00Z",
+      "cog": 312,
+      "sog": 15.7,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA",
+      "destination": "NAWVB",
+      "eta": 1777516200000
     }
   ]
 }
