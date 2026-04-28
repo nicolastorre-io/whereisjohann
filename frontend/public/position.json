@@ -27357,6 +27357,19 @@
       "navigationalStatus": 0,
       "positionReportType": "AISStreamPositionReport",
       "name": "MSC MAGNIFICA"
+    },
+    {
+      "id": "3d32d5e2-e21f-46a6-8adf-dde084ba6598",
+      "mmsi": 352594000,
+      "latitude": -29.35052,
+      "longitude": 15.95443,
+      "positionTimeMetaData": "2026-04-28T14:15:00Z",
+      "cog": 336.7,
+      "sog": 14.1,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA",
+      "destination": "NAWVB",
+      "eta": 1777511580000
     }
   ]
 }
