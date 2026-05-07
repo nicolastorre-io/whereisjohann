@@ -29542,6 +29542,17 @@
       "sog": 17.5,
       "positionReportType": "MyShipTrackingScrape",
       "name": "MSC MAGNIFICA"
+    },
+    {
+      "id": "a79ce068-a94e-4385-9599-a11aea381862",
+      "mmsi": 352594000,
+      "latitude": 11.74921,
+      "longitude": -21.07288,
+      "positionTimeMetaData": "2026-05-07T09:23:00Z",
+      "cog": 319.9,
+      "sog": 17.5,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA"
     }
   ]
 }
