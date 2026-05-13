@@ -31039,6 +31039,18 @@
       "name": "MSC MAGNIFICA",
       "destination": "ITCVV",
       "eta": 1778725320000
+    },
+    {
+      "id": "b5210286-f2b0-465f-9288-2c18b9d474d8",
+      "mmsi": 352594000,
+      "latitude": 39.07043,
+      "longitude": 3.67647,
+      "positionTimeMetaData": "2026-05-13 03:18:56.767637257 +0000 UTC",
+      "cog": 59.7,
+      "sog": 18.3,
+      "navigationalStatus": 0,
+      "positionReportType": "AISStreamPositionReport",
+      "name": "MSC MAGNIFICA"
     }
   ]
 }
