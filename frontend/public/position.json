@@ -32147,6 +32147,21 @@
       "sog": 9.4,
       "positionReportType": "MyShipTrackingScrape",
       "name": "MSC MAGNIFICA"
+    },
+    {
+      "id": "633db409-9687-45d6-91c5-6818a419788e",
+      "mmsi": 352594000,
+      "latitude": 44.41109,
+      "longitude": 8.91564,
+      "positionTimeMetaData": "2026-05-16 14:37:46.856678383 +0000 UTC",
+      "shipTimeMetaData": "2026-05-16 14:49:57.877752797 +0000 UTC",
+      "cog": 352.1,
+      "sog": 0,
+      "navigationalStatus": 0,
+      "positionReportType": "AISStreamPositionReport",
+      "name": "MSC MAGNIFICA",
+      "destination": "ITGOA",
+      "eta": 1778905800000
     }
   ]
 }
