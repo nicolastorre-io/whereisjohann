@@ -32302,6 +32302,19 @@
       "name": "",
       "destination": "",
       "eta": 1795996800000
+    },
+    {
+      "id": "abbb3d65-5a3c-4a0a-985c-288c47731baa",
+      "mmsi": 352594000,
+      "latitude": 43.54734,
+      "longitude": 7.88129,
+      "positionTimeMetaData": "2026-05-16T20:48:00Z",
+      "cog": 240.2,
+      "sog": 16.3,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA",
+      "destination": "FRMRS",
+      "eta": 1778993040000
     }
   ]
 }
