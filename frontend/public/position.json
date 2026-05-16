@@ -32058,6 +32058,17 @@
       "name": "MSC MAGNIFICA",
       "destination": "ITGOA",
       "eta": 1778905800000
+    },
+    {
+      "id": "ee5e50e2-2056-412b-9f56-ddf972387dc0",
+      "mmsi": 352594000,
+      "latitude": 44.41118,
+      "longitude": 8.91578,
+      "positionTimeMetaData": "2026-05-16T10:50:00Z",
+      "cog": 136,
+      "sog": 9.4,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA"
     }
   ]
 }
