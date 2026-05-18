@@ -32738,6 +32738,19 @@
       "name": "MSC MAGNIFICA",
       "destination": "ESBCN",
       "eta": 1779076080000
+    },
+    {
+      "id": "063a0699-6a27-48fd-b42a-e86ce202bde8",
+      "mmsi": 352594000,
+      "latitude": 41.25966,
+      "longitude": 2.21394,
+      "positionTimeMetaData": "2026-05-18T03:48:00Z",
+      "cog": 269,
+      "sog": 14.2,
+      "positionReportType": "MyShipTrackingScrape",
+      "name": "MSC MAGNIFICA",
+      "destination": "ESBCN",
+      "eta": 1779076080000
     }
   ]
 }
